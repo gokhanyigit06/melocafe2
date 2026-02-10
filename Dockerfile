@@ -1,4 +1,4 @@
-# Alpine yerine daha uyumlu olan Bullseye (Debian) kullanıyoruz
+# Alpine yerine Debian Bullseye kullanıyoruz
 FROM node:18-bullseye AS base
 
 # 1. Bağımlılıklar
@@ -13,16 +13,17 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Build sırasında veritabanı hatalarını önlemek için
+# Build korumaları
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV DATABASE_PATH=/app/data/database.sqlite
 RUN mkdir -p /app/data && touch /app/data/database.sqlite
 
-# Tip kontrolü ve lint hatalarının build'i durdurmasını engelleyelim (geçici olarak)
+# Hataları yoksayma değişkenleri
 ENV NEXT_PRIVATE_LOCAL_SKIP_TYPECHECK=1
 ENV NEXT_PRIVATE_LOCAL_SKIP_LINT=1
 
-RUN npm run build
+# Daha detaylı hata görebilmek için build komutu
+RUN npm run build || (echo "BUILD FAILED. Logging directory structure:" && ls -R && exit 1)
 
 # 3. Runner
 FROM base AS runner
@@ -31,7 +32,6 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Kalıcı klasörler
 RUN mkdir -p /app/data /app/public/uploads
 
 COPY --from=builder /app/.next/standalone ./

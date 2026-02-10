@@ -82,6 +82,16 @@ export default function HomepageSettings() {
                             />
                         </div>
                         <div className="space-y-3">
+                            <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Alt Başlık (Hero Subtitle)</label>
+                            <textarea
+                                value={settings.hero_subtitle || ""}
+                                onChange={(e) => handleChange("hero_subtitle", e.target.value)}
+                                rows={2}
+                                className="w-full px-5 py-4 rounded-2xl border border-slate-200 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all font-light text-sm"
+                            />
+
+                        </div>
+                        <div className="space-y-3">
                             <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Buton Yazısı</label>
                             <input
                                 value={settings.hero_button_text || ""}

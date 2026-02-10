@@ -43,6 +43,9 @@ export default function Header({ settings }: { settings?: any }) {
                 <div className="container mx-auto px-6 flex items-center justify-between">
                     {/* Left Navigation (Desktop) */}
                     <nav className="hidden md:flex gap-8 text-sm font-medium tracking-wide">
+                        <Link href="/" className="hover:opacity-75 transition-opacity">
+                            Anasayfa.
+                        </Link>
                         <Link href="/locations" className="hover:opacity-75 transition-opacity">
                             Mağazalar.
                         </Link>
@@ -105,6 +108,9 @@ export default function Header({ settings }: { settings?: any }) {
                             <X className="w-8 h-8" />
                         </button>
                         <nav className="flex flex-col items-center gap-6 text-2xl font-serif">
+                            <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+                                Anasayfa.
+                            </Link>
                             <Link href="/locations" onClick={() => setIsMobileMenuOpen(false)}>
                                 Mağazalar.
                             </Link>

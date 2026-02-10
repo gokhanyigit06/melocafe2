@@ -1,7 +1,8 @@
 export default function Hero({ settings }: { settings: any }) {
     const videoUrl = settings?.hero_video_url || "/hero-video.mp4";
     const title = settings?.hero_title || "Modern Kahve.";
-    const buttonText = settings?.hero_button_text || "SHOP NOW";
+    const subtitle = settings?.hero_subtitle || "Pourers of the world's best coffees and providers of the tools and techniques from our House to yours.";
+
 
     return (
         <section className="relative h-screen w-full overflow-hidden">
@@ -23,11 +24,12 @@ export default function Hero({ settings }: { settings: any }) {
                 <h1 className="font-serif text-5xl md:text-7xl mb-6 tracking-tight drop-shadow-2xl max-w-4xl uppercase">
                     {title}
                 </h1>
-                {buttonText && (
-                    <button className="mt-4 px-8 py-3 border-2 border-white bg-transparent hover:bg-white hover:text-black transition-all font-bold tracking-widest uppercase text-sm">
-                        {buttonText}
-                    </button>
+                {subtitle && (
+                    <p className="font-light text-lg md:text-xl max-w-3xl drop-shadow-lg tracking-wide opacity-90">
+                        {subtitle}
+                    </p>
                 )}
+
             </div>
         </section>
     );

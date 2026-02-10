@@ -92,8 +92,6 @@ export default function Footer({ settings }: { settings?: any }) {
                         <h4 className="font-helvetica font-bold mb-6 text-white">Locations.</h4>
                         <ul className="space-y-4 text-gray-400">
                             <li><Link href="/locations" className="hover:text-white transition-colors">VISIT US.</Link></li>
-                            <li><Link href="#" className="hover:text-white transition-colors">OUR APP.</Link></li>
-                            <li><Link href="#" className="hover:text-white transition-colors">OUR FOOD.</Link></li>
                             <li><Link href="#" className="hover:text-white transition-colors">EVENTS.</Link></li>
                         </ul>
                     </div>
@@ -102,8 +100,6 @@ export default function Footer({ settings }: { settings?: any }) {
                         <ul className="space-y-4 text-gray-400">
                             <li><Link href="/highlights" className="hover:text-white transition-colors">HIGHLIGHTS.</Link></li>
                             <li><Link href="/story" className="hover:text-white transition-colors">OUR STORY.</Link></li>
-                            <li><Link href="#" className="hover:text-white transition-colors">CAREERS.</Link></li>
-                            <li><Link href="#" className="hover:text-white transition-colors">FRANCHISE.</Link></li>
                         </ul>
                     </div>
                 </div>
@@ -153,7 +149,7 @@ export default function Footer({ settings }: { settings?: any }) {
                         <Link href="#" className="hover:text-white transition-colors">COOKIES</Link>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </div >
+        </footer >
     );
 }

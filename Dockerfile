@@ -10,9 +10,13 @@ RUN npm ci
 
 # 2. Rebuild the source code only when needed
 FROM base AS builder
+RUN apk add --no-cache python3 make g++
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# IMPORTANT: Initialize database schema so Next.js can pre-render pages during build
+RUN node scripts/setup-db.js && node scripts/setup-locations.js
 
 # Disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
@@ -26,7 +30,7 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Create data and uploads directories to ensure they exist for volumes
+# Create data and uploads directories
 RUN mkdir -p /app/data /app/public/uploads
 
 # Copy standalone build

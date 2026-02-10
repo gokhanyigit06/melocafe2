@@ -1,4 +1,4 @@
-# Alpine yerine Debian Bullseye kullanıyoruz
+# Bullseye (Debian)
 FROM node:18-bullseye AS base
 
 # 1. Bağımlılıklar
@@ -22,8 +22,8 @@ RUN mkdir -p /app/data && touch /app/data/database.sqlite
 ENV NEXT_PRIVATE_LOCAL_SKIP_TYPECHECK=1
 ENV NEXT_PRIVATE_LOCAL_SKIP_LINT=1
 
-# Daha detaylı hata görebilmek için build komutu
-RUN npm run build || (echo "BUILD FAILED. Logging directory structure:" && ls -R && exit 1)
+# Build komutunu hatayı ekrana basacak şekilde güncelledim
+RUN npm run build || { echo "--- NEXT.JS BUILD LOGS ---"; cat .next/error-log.txt 2>/dev/null || true; exit 1; }
 
 # 3. Runner
 FROM base AS runner

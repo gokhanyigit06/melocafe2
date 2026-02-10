@@ -7,8 +7,12 @@ services:
       dockerfile: Dockerfile
     container_name: melo-coffee
     restart: always
-    ports:
-      - "3000:3000"
+    # Ports kısmını Coolify'ın kendi proxy katmanına bırakmak için 
+    # doğrudan 3000:3000 yazmak yerine sadece iç portu belirtelim 
+    # ya da ports kısmını tamamen kaldırıp Coolify ayarlarına güvenebilirsin.
+    # Şimdilik çakışmayı önlemek için silelim, Coolify FQDN üzerinden 3000'e bağlayacaktır.
+    expose:
+      - "3000"
     environment:
       - NODE_ENV=production
       - DATABASE_PATH=/app/data/database.sqlite

@@ -15,7 +15,14 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# IMPORTANT: Initialize database schema so Next.js can pre-render pages during build
+# Ensure data directory exists even during build to prevent script failures
+RUN mkdir -p /app/data
+
+# IMPORTANT: Reset DATABASE_PATH during build so scripts use the default local path
+# This prevents "directory not found" errors if DATABASE_PATH points to a volume
+ENV DATABASE_PATH=""
+
+# Initialize database schema so Next.js can pre-render pages during build
 RUN node scripts/setup-db.js && node scripts/setup-locations.js
 
 # Disable telemetry during the build.
@@ -30,7 +37,7 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Create data and uploads directories
+# Create data and uploads directories for production
 RUN mkdir -p /app/data /app/public/uploads
 
 # Copy standalone build

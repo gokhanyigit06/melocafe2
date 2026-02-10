@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  melo-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: melo-coffee
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_PATH=/app/data/database.sqlite
+      - AUTH_SECRET=${AUTH_SECRET}
+      - AUTH_URL=${AUTH_URL}
+    volumes:
+      - melo_data:/app/data
+      - melo_uploads:/app/public/uploads
+
+volumes:
+  melo_data:
+  melo_uploads:

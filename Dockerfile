@@ -10,14 +10,22 @@ RUN npm ci
 
 # 2. Rebuild the source code only when needed
 FROM base AS builder
+# Build stages also need generic tools for some npm scripts
+RUN apk add --no-cache python3 make g++
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Create dummy directories to prevent DB connection errors during build
+# Next.js might try to access the DB path if environment variables are passed
+RUN mkdir -p /app/data /app/public/uploads && touch /app/data/database.sqlite
+
 # Disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Note: We are NOT running DB scripts here anymore
+# Ensure DATABASE_PATH points to our dummy file for build time
+ENV DATABASE_PATH=/app/data/database.sqlite
+
 RUN npm run build
 
 # 3. Production image
@@ -27,7 +35,7 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Create data and uploads directories
+# Create data and uploads directories for persistence (Volumes)
 RUN mkdir -p /app/data /app/public/uploads
 
 # Copy standalone build

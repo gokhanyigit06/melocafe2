@@ -8,6 +8,8 @@ import VisitUs from "@/components/VisitUs";
 import Highlights from "@/components/Highlights";
 import { getSettings } from "@/lib/settings";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const settings = await getSettings();
 

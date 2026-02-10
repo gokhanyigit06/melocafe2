@@ -10,45 +10,40 @@ RUN npm ci
 
 # 2. Rebuild the source code only when needed
 FROM base AS builder
-RUN apk add --no-cache python3 make g++
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Ensure data directory exists even during build to prevent script failures
-RUN mkdir -p /app/data
-
-# IMPORTANT: Reset DATABASE_PATH during build so scripts use the default local path
-# This prevents "directory not found" errors if DATABASE_PATH points to a volume
-ENV DATABASE_PATH=""
-
-# Initialize database schema so Next.js can pre-render pages during build
-RUN node scripts/setup-db.js && node scripts/setup-locations.js
-
 # Disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 
+# Note: We are NOT running DB scripts here anymore
 RUN npm run build
 
-# 3. Production image, copy all the files and run next
+# 3. Production image
 FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Create data and uploads directories for production
+# Create data and uploads directories
 RUN mkdir -p /app/data /app/public/uploads
 
 # Copy standalone build
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/scripts ./scripts
+COPY --from=builder /app/entrypoint.sh ./entrypoint.sh
+
+# Set permissions for the entrypoint
+RUN chmod +x ./entrypoint.sh
 
 # Expose port
 EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-# Start the application
-CMD ["node", "server.js"]
+# Use the entrypoint script to start the app
+ENTRYPOINT ["./entrypoint.sh"]

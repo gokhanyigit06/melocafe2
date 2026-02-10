@@ -1,6 +1,8 @@
 import { db } from "@/lib/db";
 import LocationsClient from "./LocationsClient";
 
+export const dynamic = "force-dynamic";
+
 async function getLocations() {
     try {
         const result = await db.query("SELECT * FROM locations WHERE is_active = 1 ORDER BY created_at DESC");

@@ -1,13 +1,12 @@
 #!/bin/sh
-set -e
+# set -e removed to allow server to start even if setup fails (for debugging 502)
 
 # 1. Run database setup scripts
-# The 'set -e' option ensures that if any of these scripts fail, 
-# the entire deployment stops and restarts, preventing the app from starting in a broken state.
 echo "Starting database setup..."
-node scripts/setup-postgres.js
-node scripts/create-admin.js
-node scripts/seed-settings.js
+# Use || true to continue even if script fails
+node scripts/setup-postgres.js || echo "WARNING: setup-postgres.js failed"
+node scripts/create-admin.js || echo "WARNING: create-admin.js failed"
+node scripts/seed-settings.js || echo "WARNING: seed-settings.js failed"
 
 # 2. Start the application
 echo "Starting application..."

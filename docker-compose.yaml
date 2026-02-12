@@ -11,27 +11,10 @@ services:
       - "3000"
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgresql://postgres:password@db:5432/melo
       - AUTH_SECRET=${AUTH_SECRET}
       - AUTH_URL=${AUTH_URL}
-    depends_on:
-      - db
     volumes:
       - melo_uploads:/app/public/uploads
 
-  db:
-    image: postgres:15-alpine
-    container_name: melo-db
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: melo
-    ports:
-      - "5432:5432"
-    volumes:
-      - melo_db_data:/var/lib/postgresql/data
-
 volumes:
-  melo_db_data:
   melo_uploads:

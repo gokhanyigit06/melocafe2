@@ -11,7 +11,8 @@ async function setup() {
         console.log('Running setup for SQLite...');
 
         // Users
-        db.run('DROP TABLE IF EXISTS users');
+        // Users table check
+
         db.run(`
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,

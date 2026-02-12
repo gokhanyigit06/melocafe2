@@ -7,8 +7,8 @@ const dbPath = process.env.DATABASE_PATH
 async function createAdmin() {
     const db = new sqlite3.Database(dbPath);
     const username = 'admin';
-    // Hashed version of 'meloadmin123' to avoid bcryptjs dependency at runtime
-    const hashedPassword = '$2b$10$qAeivF3oo1h0Ri2Scsg2J.CpO6Y1NPUKXpLMCOnIC1OTa6b38RdzC';
+    // Hashed version of 'meloadmin123'
+    const hashedPassword = '$2b$10$u3WIXpdVRy05bTZXfmU9LOmBhhkyT1/jJEz24k4sr15NmJvhJvPGq';
 
     console.log('Using database at:', dbPath);
 

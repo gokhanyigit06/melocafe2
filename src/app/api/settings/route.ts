@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { auth } from "@/auth";
+import { revalidatePath } from "next/cache";
 
 export const dynamic = 'force-dynamic';
 
@@ -35,6 +36,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
+        revalidatePath('/');
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Failed to update settings:", error);

@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const isAdminPage = pathname?.startsWith("/admin");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [settings, setSettings] = useState<any>(null);
 
     useEffect(() => {

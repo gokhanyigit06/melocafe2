@@ -11,9 +11,7 @@ import {
     Menu,
     Home,
     Layout,
-    MapPin,
     Phone,
-    Settings,
     Coffee,
     Store
 } from "lucide-react";

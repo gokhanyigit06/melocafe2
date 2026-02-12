@@ -8,6 +8,7 @@ export default async function Highlights() {
             'SELECT * FROM posts WHERE published = true ORDER BY created_at DESC LIMIT 3'
         );
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const posts = (result?.rows || []).map((post: any) => ({
             ...post,
             id: post.id.toString(),

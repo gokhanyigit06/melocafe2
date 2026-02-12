@@ -6,11 +6,12 @@ export const dynamic = "force-dynamic";
 async function getSettings() {
     try {
         const result = await db.query("SELECT key, value FROM settings");
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return result.rows.reduce((acc: any, row: any) => {
             acc[row.key] = row.value;
             return acc;
         }, {});
-    } catch (e) {
+    } catch {
         return {};
     }
 }

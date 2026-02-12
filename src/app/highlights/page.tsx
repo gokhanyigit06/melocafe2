@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
@@ -70,7 +69,7 @@ export default function HighlightsPage() {
                         <div className="flex justify-between items-baseline border-t border-black/10 pt-4">
                             <span className="text-xs font-bold uppercase tracking-widest text-gray-500">Spotlight.</span>
                             <p className="text-sm text-gray-600 max-w-xs text-right">
-                                A Barcelona guest. A London roast. For this year's seasonal special.
+                                A Barcelona guest. A London roast. For this year&apos;s seasonal special.
                             </p>
                         </div>
                     </motion.div>
@@ -150,9 +149,9 @@ export default function HighlightsPage() {
                         </div>
                         <div className="flex flex-col justify-center space-y-6">
                             <span className="text-xs font-bold uppercase tracking-widest text-black">Spotlight.</span>
-                            <h3 className="font-helvetica text-3xl font-bold">Europe's Best Coffee Shop Chain.</h3>
+                            <h3 className="font-helvetica text-3xl font-bold">Europe&apos;s Best Coffee Shop Chain.</h3>
                             <p className="text-base text-gray-700 leading-relaxed">
-                                Celebrating our tenth anniversary year, Melo is honoured to be named Europe's Best Coffee Shop Chain at the 2024 European Coffee Awards.
+                                Celebrating our tenth anniversary year, Melo is honoured to be named Europe&apos;s Best Coffee Shop Chain at the 2024 European Coffee Awards.
                             </p>
                             <span className="text-xs font-bold underline">Read more.</span>
 
@@ -213,7 +212,7 @@ export default function HighlightsPage() {
                         Get these sent to<br />your inbox.
                     </h2>
                     <p className="text-gray-600 mb-8 max-w-lg mx-auto">
-                        Become a subscriber and enjoy 10% off your first order plus access to the hottest coffee beans while they're still cooling.
+                        Become a subscriber and enjoy 10% off your first order plus access to the hottest coffee beans while they&apos;re still cooling.
                     </p>
                     <div className="relative max-w-md mx-auto">
                         <input

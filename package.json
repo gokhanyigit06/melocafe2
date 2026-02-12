@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:setup": "node scripts/setup-postgres.js && node scripts/seed-settings.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

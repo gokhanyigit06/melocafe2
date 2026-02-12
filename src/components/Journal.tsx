@@ -21,7 +21,7 @@ export default function Journal({ posts = [] }: { posts?: Post[] }) {
             title: "WatchHouse x NOMAD.",
             slug: "watchhouse-x-nomad",
             content: "",
-            excerpt: "A Barcelona guest. A London roast. For this year's London Coffee Festival, we've partnered with NOMAD Coffee on a one-off...",
+            excerpt: "A Barcelona guest. A London roast. For this year&apos;s London Coffee Festival, we've partnered with NOMAD Coffee on a one-off...",
             coverImage: "/images/journal-featured.png"
         },
         {
@@ -71,9 +71,9 @@ export default function Journal({ posts = [] }: { posts?: Post[] }) {
                         className="lg:w-1/2 space-y-8"
                     >
                         <p className="text-lg leading-relaxed text-gray-800 max-w-xl">
-                            25 square metres on London's famous Bermondsey Street was all it took to conceive
+                            25 square metres on London&apos;s famous Bermondsey Street was all it took to conceive
                             WatchHouse and lay the foundations of everything to come. Historically a shelter for men
-                            guarding the graveyard of St Mary Magdalen's Church.
+                            guarding the graveyard of St Mary Magdalen&apos;s Church.
                         </p>
                         <Link
                             href="/highlights"

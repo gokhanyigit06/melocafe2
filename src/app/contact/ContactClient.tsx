@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Instagram, Facebook, Linkedin } from "lucide-react";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function ContactClient({ settings }: { settings: any }) {
     return (
         <main className="min-h-screen bg-[#F5F2EA] text-black pt-20">

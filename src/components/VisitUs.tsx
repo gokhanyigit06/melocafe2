@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function VisitUs({ settings }: { settings?: any }) {
     const title = settings?.visit_title || "Bizi ziyaret et.";
     const description = settings?.visit_description || "Londra'nın ünlü Bermondsey Caddesi'ndeki 25 metrekarelik alan, WatchHouse'u tasarlamak ve gelecek her şeyin temellerini atmak için yeterliydi.";

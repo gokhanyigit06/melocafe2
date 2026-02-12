@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function ParallaxStory({ settings }: { settings?: any }) {
     const title = settings?.parallax_title || "Melo Kahve, anlık hazlara yavaş bir bakış açısıdır. Günlük fincanınız için düşünceli demlemeler, nadir lezzet profilleri ve özenli detaylar.";
     const imageUrl = settings?.parallax_image || "/images/coffee-shop-exterior.png";

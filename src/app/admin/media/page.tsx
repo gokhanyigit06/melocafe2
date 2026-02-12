@@ -21,6 +21,7 @@ export default async function MediaPage() {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {media.map((item: any) => (
                     <div key={item.id} className="group relative aspect-square bg-slate-100 rounded-lg overflow-hidden border border-slate-200">
                         <Image

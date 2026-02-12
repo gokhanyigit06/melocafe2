@@ -27,7 +27,7 @@ export default function StoryPage() {
                             transition={{ delay: 0.2 }}
                             className="font-causten text-lg text-gray-700 leading-relaxed max-w-md"
                         >
-                            From humble beginnings in South London, we're building a local community far and wide. Approachable, considered, full of quality and provenance; thoughtful products and paraphernalia for your daily cup. Our House or yours.
+                            From humble beginnings in South London, we&apos;re building a local community far and wide. Approachable, considered, full of quality and provenance; thoughtful products and paraphernalia for your daily cup. Our House or yours.
                         </motion.p>
                     </div>
                     <motion.div

@@ -4,12 +4,14 @@ import { useState } from "react";
 import { Save, Loader2, Layout } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function LocationsPageSettings({ initialSettings }: { initialSettings: any }) {
     const router = useRouter();
     const [isSaving, setIsSaving] = useState(false);
     const [settings, setSettings] = useState(initialSettings);
 
     const handleChange = (key: string, value: string) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         setSettings((prev: any) => ({ ...prev, [key]: value }));
     };
 

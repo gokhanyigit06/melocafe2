@@ -8,6 +8,7 @@ import { User, Search, Menu, X } from "lucide-react";
 
 import { usePathname } from "next/navigation";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Header({ settings }: { settings?: any }) {
     const announcementText = settings?.announcement_text || "Subscribe & save 10%, with free UK shipping";
     const logoUrl = settings?.logo_url || "/images/varlik3.png";

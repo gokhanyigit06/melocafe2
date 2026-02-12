@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Save, Loader2, Video, Type, Home, Image as ImageIcon, Sparkles, Star, Quote, Layout } from "lucide-react";
+import { Save, Loader2, Video, Type, Home, Sparkles, Star, Quote, Layout } from "lucide-react";
 import ImageUpload from "@/components/admin/ImageUpload";
 import { useRouter } from "next/navigation";
 

@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Hero({ settings }: { settings: any }) {
     const videoUrl = settings?.hero_video_url || "/hero-video.mp4";
     const title = settings?.hero_title || "Modern Kahve.";

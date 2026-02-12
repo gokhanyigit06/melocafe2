@@ -5,6 +5,7 @@ import { Facebook, Instagram, Linkedin, ArrowRight, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Footer({ settings }: { settings?: any }) {
     const [email, setEmail] = useState("");
     const [language, setLanguage] = useState("TR");

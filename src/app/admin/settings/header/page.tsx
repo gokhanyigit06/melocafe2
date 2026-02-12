@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Save, Loader2, Menu as MenuIcon, Image as ImageIcon, Link as LinkIcon, Type } from "lucide-react";
+import { Save, Loader2, Image as ImageIcon, Type } from "lucide-react";
 import { useRouter } from "next/navigation";
 import UploadableImageField from "@/components/admin/UploadableImageField";
 

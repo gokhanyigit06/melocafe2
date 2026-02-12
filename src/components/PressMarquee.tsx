@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function PressMarquee({ settings }: { settings?: any }) {
     const marqueeItems = [
         {
@@ -54,7 +55,7 @@ export default function PressMarquee({ settings }: { settings?: any }) {
                             )}
                         </div>
                         <span className="text-sm font-light text-gray-700 w-72 leading-snug italic">
-                            "{item.quote}"
+                            &quot;{item.quote}&quot;
                         </span>
                     </div>
                 ))}

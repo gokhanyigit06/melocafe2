@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function NitroBrew({ settings }: { settings: any }) {
     const title = settings?.nitro_title || "Nitro ile güçlendirildi. Keyfe hazır.";
     const description = settings?.nitro_description || "Etiyopya'nın Bensa yaylalarından, berraklığı ve karakteriyle bilinen doğal işlenmiş bir kahve geliyor. Yavaşça demliyoruz, ardından temiz, kremsi bir doku ve hafif bir köpük için nitrojenle şarj ediyoruz.";

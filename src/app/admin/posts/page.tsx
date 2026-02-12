@@ -37,6 +37,7 @@ export default async function PostsPage() {
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-200">
+                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                         {posts.map((post: any) => (
                             <tr key={post.id} className="hover:bg-slate-50/50 transition-colors">
                                 <td className="px-6 py-4">

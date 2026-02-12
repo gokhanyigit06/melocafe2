@@ -1,13 +1,12 @@
 import { Pool } from 'pg';
 
-const isProduction = process.env.NODE_ENV === 'production';
-
 // Create a connection pool using the DATABASE_URL environment variable
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
 });
 
 export const db = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     query: async (sql: string, params: any[] = []): Promise<{ rows: any[] }> => {
         // Helper to convert '?' to '$1', '$2', etc. for PostgreSQL compatibility
         // if the query uses '?' placeholders.

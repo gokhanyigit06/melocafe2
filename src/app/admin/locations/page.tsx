@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { db } from "@/lib/db";
-import { Plus, Edit2, Trash2, MapPin, Layout } from "lucide-react";
+import { Plus, Edit2, Trash2, MapPin } from "lucide-react";
 import LocationsPageSettings from "./LocationsPageSettings";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -9,7 +10,7 @@ async function getLocations() {
     try {
         const result = await db.query('SELECT * FROM locations ORDER BY created_at DESC');
         return result.rows;
-    } catch (error) {
+    } catch {
         return [];
     }
 }
@@ -17,11 +18,12 @@ async function getLocations() {
 async function getSettings() {
     try {
         const result = await db.query("SELECT key, value FROM settings");
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return result.rows.reduce((acc: any, row: any) => {
             acc[row.key] = row.value;
             return acc;
         }, {});
-    } catch (e) {
+    } catch {
         return {};
     }
 }
@@ -56,14 +58,16 @@ export default async function LocationsPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                     {locations.map((loc: any) => (
                         <div key={loc.id} className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden group hover:shadow-lg transition-all duration-300">
                             {loc.image_url && (
                                 <div className="relative h-48 w-full overflow-hidden">
-                                    <img
+                                    <Image
                                         src={loc.image_url}
                                         alt={loc.title}
-                                        className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
+                                        fill
+                                        className="object-cover group-hover:scale-110 transition-transform duration-500"
                                     />
                                     {loc.tag && (
                                         <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-[10px] font-black uppercase tracking-widest text-slate-900 shadow-sm">

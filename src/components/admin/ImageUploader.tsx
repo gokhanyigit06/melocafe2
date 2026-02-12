@@ -1,22 +1,17 @@
 "use client";
 
 import { useState, useRef } from "react";
-import Image from "next/image";
-import { Upload, X, Loader2 } from "lucide-react";
+import { Upload, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function ImageUploader({ onUploadSuccess }: { onUploadSuccess?: () => void }) {
     const [isUploading, setIsUploading] = useState(false);
-    const [preview, setPreview] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const router = useRouter();
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
-
-        // Preview
-        setPreview(URL.createObjectURL(file));
 
         // Upload
         setIsUploading(true);
@@ -33,7 +28,6 @@ export default function ImageUploader({ onUploadSuccess }: { onUploadSuccess?: (
 
             const data = await res.json();
             if (data.success) {
-                setPreview(null);
                 if (fileInputRef.current) fileInputRef.current.value = "";
                 if (onUploadSuccess) onUploadSuccess();
                 router.refresh();

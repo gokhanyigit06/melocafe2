@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Save, Loader2, Layout, Mail, Home, Share2 } from "lucide-react";
+import { Save, Loader2, Layout, Mail, Share2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function FooterSettings() {

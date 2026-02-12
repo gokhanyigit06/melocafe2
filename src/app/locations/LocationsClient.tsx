@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { useRef } from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function LocationsClient({ initialLocations, settings }: { initialLocations: any[], settings: any }) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -77,6 +78,7 @@ export default function LocationsClient({ initialLocations, settings }: { initia
                     className="flex gap-8 overflow-x-auto pb-16 scrollbar-hide snap-x snap-mandatory pr-12"
                     style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
                 >
+                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                     {initialLocations.map((loc: any, index: number) => (
                         <motion.div
                             key={loc.id}

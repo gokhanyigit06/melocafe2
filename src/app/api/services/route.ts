@@ -4,7 +4,7 @@ import { auth } from "@/auth";
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     try {
         const result = await db.query('SELECT * FROM services ORDER BY created_at DESC');
         return NextResponse.json(result.rows);

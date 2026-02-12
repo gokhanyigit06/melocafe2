@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, Save, Loader2, MapPin, Tag, Link as LinkIcon, AlignLeft, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import UploadableImageField from "@/components/admin/UploadableImageField";
+import Image from "next/image";
 
 export default function NewLocationPage() {
     const router = useRouter();
@@ -19,6 +20,7 @@ export default function NewLocationPage() {
         is_active: true
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleChange = (key: string, value: any) => {
         setFormData(prev => ({ ...prev, [key]: value }));
     };
@@ -178,7 +180,7 @@ export default function NewLocationPage() {
                             <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Önizleme</h4>
                             <div className="aspect-square rounded-2xl bg-slate-800 overflow-hidden relative">
                                 {formData.image_url ? (
-                                    <img src={formData.image_url} className="w-full h-full object-cover" alt="" />
+                                    <Image src={formData.image_url} className="object-cover" alt="" fill />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center">
                                         <ImageIcon className="w-8 h-8 text-slate-700" />

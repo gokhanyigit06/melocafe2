@@ -7,21 +7,31 @@ services:
       dockerfile: Dockerfile
     container_name: melo-coffee
     restart: always
-    # Ports kısmını Coolify'ın kendi proxy katmanına bırakmak için 
-    # doğrudan 3000:3000 yazmak yerine sadece iç portu belirtelim 
-    # ya da ports kısmını tamamen kaldırıp Coolify ayarlarına güvenebilirsin.
-    # Şimdilik çakışmayı önlemek için silelim, Coolify FQDN üzerinden 3000'e bağlayacaktır.
     expose:
       - "3000"
     environment:
       - NODE_ENV=production
-      - DATABASE_PATH=/app/data/database.sqlite
+      - DATABASE_URL=postgresql://postgres:password@db:5432/melo
       - AUTH_SECRET=${AUTH_SECRET}
       - AUTH_URL=${AUTH_URL}
+    depends_on:
+      - db
     volumes:
-      - melo_data:/app/data
       - melo_uploads:/app/public/uploads
 
+  db:
+    image: postgres:15-alpine
+    container_name: melo-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: melo
+    ports:
+      - "5432:5432"
+    volumes:
+      - melo_db_data:/var/lib/postgresql/data
+
 volumes:
-  melo_data:
+  melo_db_data:
   melo_uploads:

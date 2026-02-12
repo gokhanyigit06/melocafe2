@@ -1,53 +1,30 @@
-import sqlite3 from "sqlite3";
-import path from "path";
+import { Pool } from 'pg';
 
-const dbPath = process.env.DATABASE_PATH
-    ? path.resolve(process.env.DATABASE_PATH)
-    : path.join(process.cwd(), "database.sqlite");
+const isProduction = process.env.NODE_ENV === 'production';
 
-console.log(`Using database at: ${dbPath}`);
-
-const dbInstance = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-        console.error("Could not connect to database", err);
-    } else {
-        console.log("Connected to SQLite database");
-    }
+// Create a connection pool using the DATABASE_URL environment variable
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: isProduction ? { rejectUnauthorized: false } : false,
 });
 
 export const db = {
-    query: (sql: string, params: any[] = []): Promise<{ rows: any[] }> => {
-        return new Promise((resolve, reject) => {
-            // Convert PostgreSQL style $1, $2 to SQLite ? style if necessary, 
-            // though I will use ? in my queries going forward.
-            const normalizedSql = sql.replace(/\$\d+/g, "?");
-            const isReadOrReturning = normalizedSql.trim().toUpperCase().startsWith("SELECT") ||
-                normalizedSql.trim().toUpperCase().includes("RETURNING");
+    query: async (sql: string, params: any[] = []): Promise<{ rows: any[] }> => {
+        // Helper to convert '?' to '$1', '$2', etc. for PostgreSQL compatibility
+        // if the query uses '?' placeholders.
+        let paramIndex = 1;
+        const pgSql = sql.replace(/\?/g, () => `$${paramIndex++}`);
 
-            if (isReadOrReturning) {
-                dbInstance.all(normalizedSql, params, (err, rows) => {
-                    if (err) reject(err);
-                    else resolve({ rows });
-                });
-            } else {
-                dbInstance.run(normalizedSql, params, function (err) {
-                    if (err) reject(err);
-                    // For INSERT/UPDATE/DELETE, we don't usually have rows unless it's RETURNING
-                    // SQLite supports RETURNING in recent versions. dbInstance.run doesn't return rows.
-                    // We'll use dbInstance.all for everything to be safe if RETURNING is needed.
-                    else resolve({ rows: [] });
-                });
-            }
-        });
+        // If the code already used $1, $2, this won't break it assuming mixed usage isn't happening in a weird way.
+        // Ideally we should stick to one, but this attempts backward compatibility.
+
+        try {
+            const result = await pool.query(pgSql, params);
+            return { rows: result.rows };
+        } catch (error) {
+            console.error('Database query error:', error, '\nSQL:', pgSql);
+            throw error;
+        }
     },
-    // Specific helper for cases where we need RETURNING rows
-    all: (sql: string, params: any[] = []): Promise<any[]> => {
-        return new Promise((resolve, reject) => {
-            const normalizedSql = sql.replace(/\$\d+/g, "?");
-            dbInstance.all(normalizedSql, params, (err, rows) => {
-                if (err) reject(err);
-                else resolve(rows);
-            });
-        });
-    }
 };
+

@@ -1,39 +1,44 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
-const dbPath = process.env.DATABASE_PATH
-    ? path.resolve(process.env.DATABASE_PATH)
-    : path.join(__dirname, '../database.sqlite');
+const { Pool } = require('pg');
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+});
 
 async function createAdmin() {
-    const db = new sqlite3.Database(dbPath);
+    const client = await pool.connect();
     const username = 'admin';
     // Hashed version of 'meloadmin123'
     const hashedPassword = '$2b$10$u3WIXpdVRy05bTZXfmU9LOmBhhkyT1/jJEz24k4sr15NmJvhJvPGq';
 
-    console.log('Using database at:', dbPath);
+    try {
+        console.log('Checking admin user in PostgreSQL...');
 
-    db.serialize(() => {
-        // Delete existing admin to be sure
-        db.run('DELETE FROM users WHERE username = ?', [username], function (err) {
-            if (err) console.error('Error deleting:', err);
+        // Check if admin exists
+        const res = await client.query('SELECT * FROM users WHERE username = $1', [username]);
 
-            // Now insert the new one
-            db.run(
-                'INSERT INTO users (name, username, password) VALUES (?, ?, ?)',
-                ['Admin', username, hashedPassword],
-                function (err) {
-                    if (err) {
-                        console.error('Error creating admin:', err);
-                    } else {
-                        console.log('Admin user updated successfully!');
-                        console.log('Username:', username);
-                        console.log('Password (plain): meloadmin123');
-                    }
-                    db.close();
-                }
+        if (res.rows.length > 0) {
+            console.log('Admin user already exists.');
+        } else {
+            // Insert admin
+            await client.query(
+                'INSERT INTO users (name, username, password) VALUES ($1, $2, $3)',
+                ['Admin', username, hashedPassword]
             );
-        });
-    });
+            console.log('Admin user created successfully!');
+            console.log('Username:', username);
+            console.log('Password (plain): meloadmin123');
+        }
+    } catch (err) {
+        console.error('Error creating admin:', err);
+    } finally {
+        client.release();
+        await pool.end();
+    }
+}
+
+if (require.main === module) {
+    createAdmin();
 }
 
 createAdmin();

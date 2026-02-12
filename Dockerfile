@@ -15,10 +15,8 @@ COPY . .
 
 # Build korumaları ve bellek artırımı
 ENV NEXT_TELEMETRY_DISABLED 1
-ENV DATABASE_PATH=/app/data/database.sqlite
-ENV NODE_OPTIONS="--max-old-space-size=4096"
-
-RUN mkdir -p /app/data && touch /app/data/database.sqlite
+# DATABASE_PATH env var removed as we use DATABASE_URL for Postgres
+# SQLite file creation removed
 
 # Build sırasında TypeScript ve Lint kontrolünü atlayalım (Hata payını azaltmak için)
 ENV NEXT_IGNORE_TYPECHECK=1

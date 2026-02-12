@@ -1,9 +1,12 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
-const dbPath = path.join(__dirname, '../database.sqlite');
+const { Pool } = require('pg');
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+});
 
 async function seedSettings() {
-    const db = new sqlite3.Database(dbPath);
+    const client = await pool.connect();
 
     const defaultSettings = [
         // Hero Section
@@ -22,16 +25,27 @@ async function seedSettings() {
         { key: 'footer_phone', value: '+90 212 000 00 00' }
     ];
 
-    db.serialize(() => {
-        const stmt = db.prepare('INSERT OR IGNORE INTO settings (key, value) VALUES (?, ?)');
-        defaultSettings.forEach(setting => {
-            stmt.run(setting.key, setting.value);
-        });
-        stmt.finalize();
-        console.log('Default settings seeded successfully!');
-    });
+    try {
+        console.log('Seeding settings if empty...');
+        for (const setting of defaultSettings) {
+            // Postgres uses ON CONFLICT for upserts if unique constraint exists.
+            // But here we want INSERT OR IGNORE basically.
+            await client.query(
+                'INSERT INTO settings (key, value) VALUES ($1, $2) ON CONFLICT (key) DO NOTHING',
+                [setting.key, setting.value]
+            );
+        }
+        console.log('Settings seeded successfully!');
+    } catch (err) {
+        console.error('Error seeding settings:', err);
+    } finally {
+        client.release();
+        await pool.end();
+    }
+}
 
-    db.close();
+if (require.main === module) {
+    seedSettings();
 }
 
 seedSettings();

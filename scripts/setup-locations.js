@@ -1,34 +1,19 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
-const dbPath = process.env.DATABASE_PATH
-    ? path.resolve(process.env.DATABASE_PATH)
-    : path.join(__dirname, '../database.sqlite');
+const { Pool } = require('pg');
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+});
 
 async function setup() {
-    const db = new sqlite3.Database(dbPath);
+    // Locations table is already created in setup-postgres.js
+    // This script is kept for compatibility or future seeding
+    console.log('Locations setup checked (handled in main setup).');
+    await pool.end();
+}
 
-    db.serialize(() => {
-        console.log('Adding locations table to SQLite...');
-
-        db.run(`
-            CREATE TABLE IF NOT EXISTS locations (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                title TEXT NOT NULL,
-                address TEXT,
-                description TEXT,
-                image_url TEXT,
-                directions_url TEXT,
-                tag TEXT,
-                is_active BOOLEAN DEFAULT TRUE,
-                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-            )
-        `);
-
-        console.log('Locations table created successfully.');
-    });
-
-    db.close();
+if (require.main === module) {
+    setup();
 }
 
 setup();

@@ -1,6 +1,8 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
     try {
         const result = await db.query("SELECT * FROM locations ORDER BY created_at DESC");

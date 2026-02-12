@@ -5,7 +5,6 @@ const isProduction = process.env.NODE_ENV === 'production';
 // Create a connection pool using the DATABASE_URL environment variable
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: isProduction ? { rejectUnauthorized: false } : false,
 });
 
 export const db = {

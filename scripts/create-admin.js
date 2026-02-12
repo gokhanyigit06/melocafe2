@@ -5,13 +5,42 @@ const pool = new Pool({
     ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 });
 
-async function createAdmin() {
-    const client = await pool.connect();
-    const username = 'admin';
-    // Hashed version of 'meloadmin123'
-    const hashedPassword = '$2b$10$u3WIXpdVRy05bTZXfmU9LOmBhhkyT1/jJEz24k4sr15NmJvhJvPGq';
+const MAX_RETRIES = 10;
+const RETRY_DELAY = 5000; // 5 seconds
 
+async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function connectWithRetry() {
+    let retries = 0;
+    while (retries < MAX_RETRIES) {
+        try {
+            console.log(`[create-admin] Attempting to connect to database (Attempt ${retries + 1}/${MAX_RETRIES})...`);
+            const client = await pool.connect();
+            console.log('[create-admin] Successfully connected to database.');
+            return client;
+        } catch (err) {
+            console.error(`[create-admin] Connection failed: ${err.message}`);
+            retries++;
+            if (retries >= MAX_RETRIES) {
+                console.error('[create-admin] Max retries reached. Exiting.');
+                throw err;
+            }
+            console.log(`[create-admin] Waiting ${RETRY_DELAY / 1000} seconds before retrying...`);
+            await sleep(RETRY_DELAY);
+        }
+    }
+}
+
+async function createAdmin() {
+    let client;
     try {
+        client = await connectWithRetry();
+        const username = 'admin';
+        // Hashed version of 'meloadmin123'
+        const hashedPassword = '$2b$10$u3WIXpdVRy05bTZXfmU9LOmBhhkyT1/jJEz24k4sr15NmJvhJvPGq';
+
         console.log('Checking admin user in PostgreSQL...');
 
         // Check if admin exists
@@ -32,7 +61,7 @@ async function createAdmin() {
     } catch (err) {
         console.error('Error creating admin:', err);
     } finally {
-        client.release();
+        if (client) client.release();
         await pool.end();
     }
 }
@@ -40,5 +69,3 @@ async function createAdmin() {
 if (require.main === module) {
     createAdmin();
 }
-
-createAdmin();

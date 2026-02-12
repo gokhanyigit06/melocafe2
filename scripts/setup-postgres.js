@@ -1,19 +1,49 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 });
 
-async function setup() {
-    const client = await pool.connect();
+const MAX_RETRIES = 10;
+const RETRY_DELAY = 5000; // 5 seconds
+
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function connectWithRetry() {
+  let retries = 0;
+  while (retries < MAX_RETRIES) {
     try {
-        console.log('Running setup for PostgreSQL...');
+      console.log(`Attempting to connect to database (Attempt ${retries + 1}/${MAX_RETRIES})...`);
+      // pool.connect() check out a client from the pool
+      const client = await pool.connect();
+      console.log('Successfully connected to database.');
+      return client;
+    } catch (err) {
+      console.error(`Connection failed: ${err.message}`);
+      retries++;
+      if (retries >= MAX_RETRIES) {
+        console.error('Max retries reached. Exiting.');
+        throw err;
+      }
+      console.log(`Waiting ${RETRY_DELAY / 1000} seconds before retrying...`);
+      await sleep(RETRY_DELAY);
+    }
+  }
+}
 
-        await client.query('BEGIN');
+async function setup() {
+  let client;
+  try {
+    client = await connectWithRetry();
+    console.log('Running setup for PostgreSQL...');
 
-        // Users
-        await client.query(`
+    await client.query('BEGIN');
+
+    // Users
+    await client.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         name TEXT,
@@ -24,8 +54,8 @@ async function setup() {
       )
     `);
 
-        // Posts
-        await client.query(`
+    // Posts
+    await client.query(`
       CREATE TABLE IF NOT EXISTS posts (
         id SERIAL PRIMARY KEY,
         title TEXT NOT NULL,
@@ -41,8 +71,8 @@ async function setup() {
       )
     `);
 
-        // Services
-        await client.query(`
+    // Services
+    await client.query(`
       CREATE TABLE IF NOT EXISTS services (
         id SERIAL PRIMARY KEY,
         title TEXT NOT NULL,
@@ -55,8 +85,8 @@ async function setup() {
       )
     `);
 
-        // Media
-        await client.query(`
+    // Media
+    await client.query(`
       CREATE TABLE IF NOT EXISTS media (
         id SERIAL PRIMARY KEY,
         name TEXT NOT NULL,
@@ -67,8 +97,8 @@ async function setup() {
       )
     `);
 
-        // Site Settings
-        await client.query(`
+    // Site Settings
+    await client.query(`
       CREATE TABLE IF NOT EXISTS settings (
         id SERIAL PRIMARY KEY,
         key TEXT UNIQUE NOT NULL,
@@ -77,8 +107,8 @@ async function setup() {
       )
     `);
 
-        // Locations
-        await client.query(`
+    // Locations
+    await client.query(`
         CREATE TABLE IF NOT EXISTS locations (
             id SERIAL PRIMARY KEY,
             title TEXT NOT NULL,
@@ -93,18 +123,18 @@ async function setup() {
         )
     `);
 
-        await client.query('COMMIT');
-        console.log('Tables created successfully in PostgreSQL');
-    } catch (e) {
-        await client.query('ROLLBACK');
-        console.error('Error creating tables:', e);
-        process.exit(1);
-    } finally {
-        client.release();
-        await pool.end();
-    }
+    await client.query('COMMIT');
+    console.log('Tables created successfully in PostgreSQL');
+  } catch (e) {
+    if (client) await client.query('ROLLBACK');
+    console.error('Error creating tables:', e);
+    process.exit(1);
+  } finally {
+    if (client) client.release();
+    await pool.end();
+  }
 }
 
 if (require.main === module) {
-    setup();
+  setup();
 }

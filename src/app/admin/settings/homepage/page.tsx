@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Save, Loader2, Video, Type, Home, Image as ImageIcon, Sparkles, Star, Quote, Layout } from "lucide-react";
+import ImageUpload from "@/components/admin/ImageUpload";
 import { useRouter } from "next/navigation";
 
 export default function HomepageSettings() {
@@ -128,8 +129,13 @@ export default function HomepageSettings() {
                             <div key={i} className="space-y-6 pt-4 border-t md:border-t-0 md:pt-0">
                                 <h3 className="text-sm font-black text-emerald-600 uppercase italic underline decoration-2">Özellik {i}</h3>
                                 <div className="space-y-3">
-                                    <label className="text-[10px] font-black text-slate-400 uppercase">İkon/Görsel URL</label>
-                                    <input value={settings[`feature${i}_icon`] || ""} onChange={(e) => handleChange(`feature${i}_icon`, e.target.value)} className="w-full px-4 py-3 rounded-xl border border-slate-100 bg-slate-50 text-xs font-mono" placeholder="Boş bırakılırsa varsayılan ikon kullanılır" />
+                                    <div className="space-y-3">
+                                        <ImageUpload
+                                            label="İkon/Görsel URL"
+                                            value={settings[`feature${i}_icon`] || ""}
+                                            onChange={(url) => handleChange(`feature${i}_icon`, url)}
+                                        />
+                                    </div>
                                 </div>
                                 <div className="space-y-3">
                                     <label className="text-[10px] font-black text-slate-400 uppercase">Başlık</label>
@@ -163,8 +169,13 @@ export default function HomepageSettings() {
                             {[1, 2, 3].map(i => (
                                 <div key={i} className="p-6 rounded-2xl bg-slate-50 border border-slate-100 space-y-4">
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black text-slate-400 uppercase">Ürün Görseli</label>
-                                        <input value={settings[`fav${i}_image`] || ""} onChange={(e) => handleChange(`fav${i}_image`, e.target.value)} className="w-full px-3 py-2 rounded-lg border bg-white font-mono text-[10px]" />
+                                        <div className="space-y-2">
+                                            <ImageUpload
+                                                label="Ürün Görseli"
+                                                value={settings[`fav${i}_image`] || ""}
+                                                onChange={(url) => handleChange(`fav${i}_image`, url)}
+                                            />
+                                        </div>
                                     </div>
                                     <div className="space-y-2">
                                         <label className="text-[10px] font-black text-slate-400 uppercase">Ürün Adı</label>
@@ -203,12 +214,22 @@ export default function HomepageSettings() {
                         <div className="space-y-6">
                             <div className="p-6 rounded-2xl bg-orange-50/50 border border-orange-100 space-y-4">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Görsel 1 (Tek Kutu)</label>
-                                    <input value={settings.nitro_img1 || ""} onChange={(e) => handleChange("nitro_img1", e.target.value)} className="w-full px-4 py-3 rounded-xl border bg-white font-mono text-xs" />
+                                    <div className="space-y-2">
+                                        <ImageUpload
+                                            label="Görsel 1 (Tek Kutu)"
+                                            value={settings.nitro_img1 || ""}
+                                            onChange={(url) => handleChange("nitro_img1", url)}
+                                        />
+                                    </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Görsel 2 (Paket/Kutu)</label>
-                                    <input value={settings.nitro_img2 || ""} onChange={(e) => handleChange("nitro_img2", e.target.value)} className="w-full px-4 py-3 rounded-xl border bg-white font-mono text-xs" />
+                                    <div className="space-y-2">
+                                        <ImageUpload
+                                            label="Görsel 2 (Paket/Kutu)"
+                                            value={settings.nitro_img2 || ""}
+                                            onChange={(url) => handleChange("nitro_img2", url)}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -233,8 +254,11 @@ export default function HomepageSettings() {
                                         <input value={settings[`press${i}_source`] || ""} onChange={(e) => handleChange(`press${i}_source`, e.target.value)} className="w-full px-3 py-2 rounded-lg border bg-white font-bold" placeholder="Örn: Forbes" />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black text-slate-400 uppercase">Logo URL (Opsiyonel)</label>
-                                        <input value={settings[`press${i}_logo`] || ""} onChange={(e) => handleChange(`press${i}_logo`, e.target.value)} className="w-full px-3 py-2 rounded-lg border bg-white font-mono text-[10px]" />
+                                        <ImageUpload
+                                            label="Logo URL (Opsiyonel)"
+                                            value={settings[`press${i}_logo`] || ""}
+                                            onChange={(url) => handleChange(`press${i}_logo`, url)}
+                                        />
                                     </div>
                                 </div>
                                 <div className="space-y-2">
@@ -271,8 +295,11 @@ export default function HomepageSettings() {
                                 <input value={settings.parallax_btn_text || ""} onChange={(e) => handleChange("parallax_btn_text", e.target.value)} className="w-full px-5 py-4 rounded-2xl border border-slate-200 font-bold" />
                             </div>
                             <div className="space-y-3">
-                                <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Arka Plan Görsel URL</label>
-                                <input value={settings.parallax_image || ""} onChange={(e) => handleChange("parallax_image", e.target.value)} className="w-full px-5 py-4 rounded-2xl border border-slate-200 font-mono text-sm" />
+                                <ImageUpload
+                                    label="Arka Plan Görsel URL"
+                                    value={settings.parallax_image || ""}
+                                    onChange={(url) => handleChange("parallax_image", url)}
+                                />
                             </div>
                         </div>
                     </div>
@@ -310,12 +337,18 @@ export default function HomepageSettings() {
                         </div>
                         <div className="space-y-6">
                             <div className="space-y-3">
-                                <label className="text-xs font-black text-slate-400 uppercase">Büyük Görsel URL (Sol)</label>
-                                <input value={settings.visit_img_large || ""} onChange={(e) => handleChange("visit_img_large", e.target.value)} className="w-full px-5 py-4 rounded-2xl border border-slate-200 font-mono text-sm" />
+                                <ImageUpload
+                                    label="Büyük Görsel URL (Sol)"
+                                    value={settings.visit_img_large || ""}
+                                    onChange={(url) => handleChange("visit_img_large", url)}
+                                />
                             </div>
                             <div className="space-y-3">
-                                <label className="text-xs font-black text-slate-400 uppercase">Küçük Görsel URL (Sağ Alt)</label>
-                                <input value={settings.visit_img_small || ""} onChange={(e) => handleChange("visit_img_small", e.target.value)} className="w-full px-5 py-4 rounded-2xl border border-slate-200 font-mono text-sm" />
+                                <ImageUpload
+                                    label="Küçük Görsel URL (Sağ Alt)"
+                                    value={settings.visit_img_small || ""}
+                                    onChange={(url) => handleChange("visit_img_small", url)}
+                                />
                             </div>
                         </div>
                     </div>

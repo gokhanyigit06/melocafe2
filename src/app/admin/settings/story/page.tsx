@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Save, Loader2, FileText, Image as ImageIcon, Sparkles } from "lucide-react";
+import ImageUpload from "@/components/admin/ImageUpload";
 import { useRouter } from "next/navigation";
 
 export default function StorySettings() {
@@ -108,19 +109,17 @@ export default function StorySettings() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Kapak Görseli URL</label>
-                            <input
+                            <ImageUpload
+                                label="Kapak Görseli URL"
                                 value={settings.story_cover_img || ""}
-                                onChange={(e) => handleChange("story_cover_img", e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl border border-slate-200 font-mono text-sm"
+                                onChange={(url) => handleChange("story_cover_img", url)}
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Yan Görsel URL</label>
-                            <input
+                            <ImageUpload
+                                label="Yan Görsel URL"
                                 value={settings.story_side_img || ""}
-                                onChange={(e) => handleChange("story_side_img", e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl border border-slate-200 font-mono text-sm"
+                                onChange={(url) => handleChange("story_side_img", url)}
                             />
                         </div>
                     </div>

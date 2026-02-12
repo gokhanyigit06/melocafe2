@@ -38,6 +38,7 @@ COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/scripts ./scripts
 COPY --from=builder /app/entrypoint.sh ./entrypoint.sh
+COPY --from=builder /app/next.config.ts ./next.config.ts
 
 RUN chmod +x ./entrypoint.sh
 

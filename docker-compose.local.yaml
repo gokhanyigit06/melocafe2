@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: melo
     ports:
-      - "5434:5432"
+      - "5435:5432"
     volumes:
       - melo_db_data_local:/var/lib/postgresql/data
 

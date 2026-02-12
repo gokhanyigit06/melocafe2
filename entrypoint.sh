@@ -10,4 +10,4 @@ node scripts/seed-settings.js || echo "WARNING: seed-settings.js failed"
 
 # 2. Start the application
 echo "Starting application..."
-exec node server.js
+exec npm start

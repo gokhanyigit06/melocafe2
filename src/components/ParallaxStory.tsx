@@ -40,10 +40,10 @@ export default function ParallaxStory({ settings }: { settings?: any }) {
             </motion.div>
 
             {/* Text Overlay */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10">
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 md:px-12 z-10 w-full">
                 <motion.h2
                     style={{ opacity: textOpacity }}
-                    className="font-serif text-3xl md:text-5xl lg:text-6xl text-white font-medium max-w-5xl leading-tight drop-shadow-lg transition-opacity duration-300"
+                    className="font-serif text-3xl md:text-5xl lg:text-6xl text-white font-medium max-w-4xl leading-tight drop-shadow-lg transition-opacity duration-300"
                 >
                     {title}
                 </motion.h2>

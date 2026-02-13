@@ -50,9 +50,11 @@ export async function POST(req: NextRequest) {
         await writeFile(filePath, finalBuffer);
 
         // Save to DB using raw SQL
+        // Store URL as /api/uploads/[filename] to ensure it is served correctly by our dynamic route
+        // even in production/Docker environments where runtime static files might be tricky.
         const result = await db.query(
             'INSERT INTO media (name, url, type, size) VALUES ($1, $2, $3, $4) RETURNING *',
-            [finalFilename, `/uploads/${finalFilename}`, finalType, finalBuffer.length]
+            [finalFilename, `/api/uploads/${finalFilename}`, finalType, finalBuffer.length]
         );
 
         const media = result.rows[0];

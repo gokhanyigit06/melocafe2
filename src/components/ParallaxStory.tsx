@@ -16,6 +16,13 @@ export default function ParallaxStory({ settings }: { settings?: any }) {
     });
 
     const textOpacity = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0.3, 1, 0.3]);
+    const titleSize = settings?.parallax_title_size || "large";
+    const sizeMap: Record<string, string> = {
+        small: "text-2xl md:text-3xl lg:text-4xl",
+        medium: "text-2xl md:text-4xl lg:text-5xl",
+        large: "text-3xl md:text-5xl lg:text-6xl",
+    };
+    const sizeClass = sizeMap[titleSize] || sizeMap.large;
     const yParallax = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
     return (
@@ -43,7 +50,7 @@ export default function ParallaxStory({ settings }: { settings?: any }) {
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 md:px-12 z-10 w-full">
                 <motion.h2
                     style={{ opacity: textOpacity }}
-                    className="font-serif text-3xl md:text-5xl lg:text-6xl text-white font-medium max-w-4xl leading-tight drop-shadow-lg transition-opacity duration-300"
+                    className={`font-serif ${sizeClass} text-white font-medium max-w-4xl leading-tight drop-shadow-lg transition-opacity duration-300`}
                 >
                     {title}
                 </motion.h2>

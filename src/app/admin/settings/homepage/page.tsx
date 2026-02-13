@@ -280,14 +280,28 @@ export default function HomepageSettings() {
                     </div>
 
                     <div className="space-y-6">
-                        <div className="space-y-3">
-                            <label className="text-xs font-black text-slate-400 uppercase">Hikaye Sloganı</label>
-                            <textarea
-                                value={settings.parallax_title || ""}
-                                onChange={(e) => handleChange("parallax_title", e.target.value)}
-                                rows={3}
-                                className="w-full px-5 py-4 rounded-2xl border border-slate-200 font-serif text-xl"
-                            />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-3">
+                                <label className="text-xs font-black text-slate-400 uppercase">Hikaye Sloganı</label>
+                                <textarea
+                                    value={settings.parallax_title || ""}
+                                    onChange={(e) => handleChange("parallax_title", e.target.value)}
+                                    rows={3}
+                                    className="w-full px-5 py-4 rounded-2xl border border-slate-200 font-serif text-xl"
+                                />
+                            </div>
+                            <div className="space-y-3">
+                                <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Yazı Boyutu</label>
+                                <select
+                                    value={settings.parallax_title_size || "large"}
+                                    onChange={(e) => handleChange("parallax_title_size", e.target.value)}
+                                    className="w-full px-5 py-4 rounded-2xl border border-slate-200 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all font-bold bg-white"
+                                >
+                                    <option value="large">Büyük (Standart)</option>
+                                    <option value="medium">Orta</option>
+                                    <option value="small">Küçük</option>
+                                </select>
+                            </div>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-3">

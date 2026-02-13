@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import path from "path";
-import { writeFile } from "fs/promises";
+import { writeFile, mkdir } from "fs/promises";
 import sharp from "sharp";
 
 export async function POST(req: NextRequest) {
@@ -38,7 +38,15 @@ export async function POST(req: NextRequest) {
             finalType = "image/webp";
         }
 
-        const filePath = path.join(process.cwd(), "public/uploads", finalFilename);
+        const uploadDir = path.join(process.cwd(), "public/uploads");
+        try {
+            await mkdir(uploadDir, { recursive: true });
+        } catch (err) {
+            console.error("Directory creation error:", err);
+            // Continue, as it might already exist or be a permission issue that writeFile might hit or not
+        }
+
+        const filePath = path.join(uploadDir, finalFilename);
         await writeFile(filePath, finalBuffer);
 
         // Save to DB using raw SQL
@@ -53,6 +61,9 @@ export async function POST(req: NextRequest) {
 
     } catch (error) {
         console.error("Upload error:", error);
-        return NextResponse.json({ error: "Failed to upload file." }, { status: 500 });
+        return NextResponse.json(
+            { error: error instanceof Error ? error.message : "Failed to upload file." },
+            { status: 500 }
+        );
     }
 }

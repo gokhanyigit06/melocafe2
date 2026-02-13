@@ -35,7 +35,10 @@ export default function ImageUpload({ value, onChange, label, className = "" }: 
                 body: formData,
             });
 
-            if (!res.ok) throw new Error("Upload failed");
+            if (!res.ok) {
+                const errorData = await res.json().catch(() => ({ error: "Upload failed" }));
+                throw new Error(errorData.error || "Upload failed");
+            }
 
             const data = await res.json();
             onChange(data.url);

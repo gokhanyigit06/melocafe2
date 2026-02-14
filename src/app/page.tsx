@@ -3,10 +3,9 @@ import ImageShowcase from "@/components/ImageShowcase";
 import ScrollRevealStory from "@/components/ScrollRevealStory";
 import Favorites from "@/components/Favorites";
 import NitroBrew from "@/components/NitroBrew";
-import PressMarquee from "@/components/PressMarquee";
 import ParallaxStory from "@/components/ParallaxStory";
 import LocationsSection from "@/components/LocationsSection";
-import Highlights from "@/components/Highlights";
+import GalleryGrid from "@/components/GalleryGrid";
 import { getSettings } from "@/lib/settings";
 import { db } from "@/lib/db";
 
@@ -33,10 +32,9 @@ export default async function Home() {
       <Favorites settings={settings} />
       <ScrollRevealStory settings={settings} />
       <NitroBrew settings={settings} />
-      <PressMarquee settings={settings} />
       <ParallaxStory settings={settings} />
       <LocationsSection locations={locations} />
-      <Highlights />
+      <GalleryGrid settings={settings} />
     </main>
   );
 }

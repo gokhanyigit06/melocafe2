@@ -42,7 +42,7 @@ export default function ImageShowcase({ settings }: { settings?: any }) {
                     <div
                         key={index}
                         className="showcase-card group relative overflow-hidden cursor-pointer"
-                        style={{ aspectRatio: "3 / 4" }}
+                        style={{ aspectRatio: "4 / 3" }}
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
                     >

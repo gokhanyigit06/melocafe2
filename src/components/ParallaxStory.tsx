@@ -65,7 +65,7 @@ export default function ParallaxStory({ settings }: { settings?: any }) {
                 {/* Heading */}
                 <motion.h2
                     style={{ opacity: textOpacity, y: textY }}
-                    className="font-serif italic text-2xl md:text-3xl lg:text-4xl text-white font-bold max-w-3xl leading-snug mb-10 md:mb-14"
+                    className="font-serif text-2xl md:text-3xl lg:text-4xl text-white font-bold max-w-3xl leading-snug mb-10 md:mb-14"
                 >
                     {heading}
                 </motion.h2>

@@ -6,7 +6,7 @@ export default function Hero({ settings }: { settings: any }) {
 
 
     return (
-        <section className="relative h-screen w-full overflow-hidden bg-black">
+        <section className="relative aspect-square md:h-screen md:aspect-auto w-full overflow-hidden bg-black">
             {/* Background Video */}
             <video
                 autoPlay

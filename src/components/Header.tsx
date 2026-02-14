@@ -21,8 +21,7 @@ export default function Header({ settings }: { settings?: any }) {
 
     useEffect(() => {
         const handleScroll = () => {
-            // If we scroll past the top bar (approx 40px), make the header sticky/fixed at top 0 with background
-            setIsScrolled(window.scrollY > 40);
+            setIsScrolled(window.scrollY > 20);
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -31,15 +30,10 @@ export default function Header({ settings }: { settings?: any }) {
 
     return (
         <>
-            {/* Top Warning/Info Bar - Scrolls away with the page */}
-            <div className="bg-gradient-to-r from-[#0a1628] via-[#0a2b4e] to-[#0f3d5c] text-white text-xs py-2.5 text-center font-medium tracking-wide relative z-50">
-                <p>{announcementText}</p>
-            </div>
-
             <header
                 className={`w-full z-40 transition-all duration-700 ease-in-out ${isScrolled
                     ? "fixed top-0 bg-gradient-to-r from-[#0a1628] via-[#0a2b4e] to-[#0f3d5c] backdrop-blur-md text-white shadow-sm py-4"
-                    : `${isBlueBgPage ? "relative bg-gradient-to-r from-[#0a1628] via-[#0a2b4e] to-[#0f3d5c]" : "absolute top-[36px] bg-transparent"} py-6 ${isHomePage || isBlueBgPage ? "text-white" : "text-black"}`
+                    : `${isBlueBgPage ? "relative bg-gradient-to-r from-[#0a1628] via-[#0a2b4e] to-[#0f3d5c]" : "absolute top-0 bg-transparent"} py-6 ${isHomePage || isBlueBgPage ? "text-white" : "text-black"}`
                     }`}
             >
                 <div className="container mx-auto px-6 flex items-center justify-between">
@@ -111,7 +105,7 @@ export default function Header({ settings }: { settings?: any }) {
 
                 {/* Mobile Menu Overlay */}
                 {isMobileMenuOpen && (
-                    <div className="fixed inset-0 bg-[#0a2b4e]/95 text-white z-50 flex flex-col items-center justify-center gap-8 md:hidden">
+                    <div className="fixed inset-0 bg-[#0a2b4e] text-white z-50 flex flex-col items-center justify-center gap-8 md:hidden">
                         <button
                             className="absolute top-8 right-8"
                             onClick={() => setIsMobileMenuOpen(false)}

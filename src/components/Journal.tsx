@@ -13,7 +13,7 @@ interface Post {
     coverImage: string;
 }
 
-export default function Journal({ posts = [] }: { posts?: Post[] }) {
+export default function Journal({ posts = [], settings }: { posts?: Post[], settings?: any }) {
     // Statik yedek içerikler (Admin panelinden veri gelmezse görünecek olanlar)
     const defaultPosts: Post[] = [
         {
@@ -70,7 +70,7 @@ export default function Journal({ posts = [] }: { posts?: Post[] }) {
                         transition={{ duration: 0.8 }}
                         className="font-helvetica text-6xl md:text-8xl font-bold leading-none tracking-tight"
                     >
-                        Highlights.
+                        {settings?.journal_title || "Highlights."}
                     </motion.h2>
 
                     <motion.div
@@ -81,15 +81,13 @@ export default function Journal({ posts = [] }: { posts?: Post[] }) {
                         className="lg:w-1/2 space-y-8"
                     >
                         <p className="text-lg leading-relaxed text-white/80 max-w-xl">
-                            25 square metres on London&apos;s famous Bermondsey Street was all it took to conceive
-                            WatchHouse and lay the foundations of everything to come. Historically a shelter for men
-                            guarding the graveyard of St Mary Magdalen&apos;s Church.
+                            {settings?.journal_description || "25 square metres on London's famous Bermondsey Street was all it took to conceive WatchHouse and lay the foundations of everything to come. Historically a shelter for men guarding the graveyard of St Mary Magdalen's Church."}
                         </p>
                         <Link
                             href="/highlights"
                             className="inline-block px-10 py-3 border border-white rounded-full text-xs font-bold tracking-[0.2em] hover:bg-white hover:text-[#0a1628] transition-all uppercase"
                         >
-                            Explore Highlights
+                            {settings?.journal_btn_text || "Explore Highlights"}
                         </Link>
                     </motion.div>
                 </div>

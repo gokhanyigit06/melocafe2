@@ -40,12 +40,18 @@ export default function ParallaxStory({ settings }: { settings?: any }) {
                             loop
                             playsInline
                             className="absolute inset-0 w-full h-full object-cover"
+                            onError={(e) => {
+                                (e.target as HTMLVideoElement).style.display = 'none';
+                            }}
                         />
                     ) : (
                         <img
                             src={bgImage}
                             alt=""
                             className="absolute inset-0 w-full h-full object-cover"
+                            onError={(e) => {
+                                (e.target as HTMLImageElement).style.display = 'none';
+                            }}
                         />
                     )}
                     <div className="absolute inset-0 bg-black/50" />

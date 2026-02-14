@@ -36,12 +36,17 @@ export default function ScrollRevealStory({ settings }: { settings?: any }) {
             style={{ minHeight: "45vh" }}
         >
             {/* Background Image */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-                src={bgImage}
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover"
-            />
+            {bgImage && (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                    src={bgImage}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover"
+                    onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                    }}
+                />
+            )}
 
             {/* Subtle Overlay - much lighter than before */}
             <div className="absolute inset-0 bg-black/30" />

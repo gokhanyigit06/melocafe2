@@ -88,7 +88,7 @@ export default function ImageUpload({ value, onChange, label, className = "", ac
                     className="hidden"
                 />
 
-                {preview ? (
+                {preview && !preview.includes('null') && !preview.includes('undefined') ? (
                     <div className="relative aspect-video w-full h-40 bg-slate-100 flex items-center justify-center">
                         {isVideo ? (
                             <div className="relative w-full h-full flex items-center justify-center bg-slate-900">
@@ -100,6 +100,10 @@ export default function ImageUpload({ value, onChange, label, className = "", ac
                                 src={preview}
                                 alt="Preview"
                                 className="w-full h-full object-cover"
+                                onError={(e) => {
+                                    setPreview(null);
+                                    onChange("");
+                                }}
                             />
                         )}
 

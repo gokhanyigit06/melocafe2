@@ -14,7 +14,19 @@ export async function POST(req: NextRequest) {
         }
 
         const buffer = Buffer.from(await file.arrayBuffer());
-        const filename = file.name.replaceAll(" ", "_");
+
+        // Sanitize filename: replace spaces, Turkish chars and special symbols
+        const turkishChars: Record<string, string> = {
+            'ğ': 'g', 'Ğ': 'G', 'ü': 'u', 'Ü': 'U', 'ş': 's', 'Ş': 'S',
+            'ı': 'i', 'İ': 'I', 'ö': 'o', 'Ö': 'O', 'ç': 'c', 'Ç': 'C'
+        };
+
+        let sanitizedName = file.name;
+        Object.entries(turkishChars).forEach(([key, value]) => {
+            sanitizedName = sanitizedName.replaceAll(key, value);
+        });
+
+        const filename = sanitizedName.replace(/[^a-zA-Z0-9.-]/g, "_");
         const nameWithoutExt = path.parse(filename).name;
 
         const isVideo = file.type.startsWith("video/");

@@ -12,17 +12,15 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.dribbble.com",
+        hostname: "**",
       },
       {
-        protocol: "https",
-        hostname: "placehold.co",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
+        protocol: "http",
+        hostname: "**",
       },
     ],
+    // Hatalı görsel yüklemelerinde uygulama patlamasın
+    unoptimized: true,
   },
   async redirects() {
     return [

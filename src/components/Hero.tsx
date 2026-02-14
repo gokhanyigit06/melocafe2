@@ -6,13 +6,15 @@ export default function Hero({ settings }: { settings: any }) {
 
 
     return (
-        <section className="relative h-screen w-full overflow-hidden">
+        <section className="relative h-screen w-full overflow-hidden bg-black">
             {/* Background Video */}
             <video
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="auto"
+                poster={settings?.hero_poster_url}
                 className="absolute top-0 left-0 w-full h-full object-cover z-0 brightness-[0.8]"
                 key={videoUrl} // Force re-render on URL change
             >

@@ -14,14 +14,13 @@ export default function NitroBrew({ settings }: { settings: any }) {
     return (
         <section className="bg-[#F5F2EA] py-20 px-6 text-black border-t border-black/5">
             <div className="container mx-auto">
-                <div className="flex flex-col md:flex-row justify-between items-start mb-20 gap-12">
+                <div className="flex flex-col items-center text-center mb-20 gap-8 max-w-4xl mx-auto">
                     {/* Animated Heading */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="md:w-1/2"
                     >
                         <h2 className="font-serif text-5xl md:text-7xl font-bold leading-tight tracking-tight uppercase">
                             {title}
@@ -34,9 +33,9 @@ export default function NitroBrew({ settings }: { settings: any }) {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                        className="md:w-1/3 space-y-6"
+                        className="max-w-2xl"
                     >
-                        <p className="text-gray-800 leading-relaxed text-lg whitespace-pre-line">
+                        <p className="text-gray-800 leading-relaxed text-xl md:text-2xl whitespace-pre-line font-light">
                             {description}
                         </p>
                     </motion.div>

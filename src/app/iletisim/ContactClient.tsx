@@ -36,14 +36,7 @@ export default function ContactClient({ settings }: { settings: any }) {
                         >
                             {settings.contact_hero_desc || "Uzmanlarımız Modern Kahve sorularınız için burada, doğru yerdesiniz."}
                         </motion.p>
-                        <div className="flex gap-4 mt-12">
-                            <button className="px-8 py-3 border border-white/30 rounded-full text-xs font-bold tracking-widest hover:bg-white hover:text-black transition-all uppercase backdrop-blur-sm">
-                                {settings.contact_hero_btn1_text || "FAQs"}
-                            </button>
-                            <button className="px-8 py-3 border border-white/30 rounded-full text-xs font-bold tracking-widest hover:bg-white hover:text-black transition-all uppercase backdrop-blur-sm">
-                                {settings.contact_hero_btn2_text || "Feedback"}
-                            </button>
-                        </div>
+
                     </div>
                 </div>
             </section>

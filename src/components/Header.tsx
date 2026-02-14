@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { User, Search, Menu, X } from "lucide-react";
+import { Instagram, Search, Menu, X } from "lucide-react";
 
 import { usePathname } from "next/navigation";
 
@@ -32,14 +32,14 @@ export default function Header({ settings }: { settings?: any }) {
     return (
         <>
             {/* Top Warning/Info Bar - Scrolls away with the page */}
-            <div className="bg-[#0a2b4e] text-white text-xs py-2.5 text-center font-medium tracking-wide relative z-50">
+            <div className="bg-gradient-to-r from-[#0a1628] via-[#0a2b4e] to-[#0f3d5c] text-white text-xs py-2.5 text-center font-medium tracking-wide relative z-50">
                 <p>{announcementText}</p>
             </div>
 
             <header
                 className={`w-full z-40 transition-all duration-700 ease-in-out ${isScrolled
-                    ? "fixed top-0 bg-[#0a2b4e]/95 backdrop-blur-md text-white shadow-sm py-4"
-                    : `${isBlueBgPage ? "relative bg-[#0a2b4e]" : "absolute top-[36px] bg-transparent"} py-6 ${isHomePage || isBlueBgPage ? "text-white" : "text-black"}`
+                    ? "fixed top-0 bg-gradient-to-r from-[#0a1628] via-[#0a2b4e] to-[#0f3d5c] backdrop-blur-md text-white shadow-sm py-4"
+                    : `${isBlueBgPage ? "relative bg-gradient-to-r from-[#0a1628] via-[#0a2b4e] to-[#0f3d5c]" : "absolute top-[36px] bg-transparent"} py-6 ${isHomePage || isBlueBgPage ? "text-white" : "text-black"}`
                     }`}
             >
                 <div className="container mx-auto px-6 flex items-center justify-between">
@@ -91,12 +91,21 @@ export default function Header({ settings }: { settings?: any }) {
 
                     {/* Right Actions (Icon Buttons) */}
                     <div className="hidden md:flex items-center justify-end space-x-6 w-5/12">
-                        <button aria-label="Account" className="hover:text-gray-300 transition-colors">
-                            <User size={20} />
-                        </button>
+                        <a href="https://www.instagram.com/melokahve" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-gray-300 transition-colors">
+                            <Instagram size={20} />
+                        </a>
                         <button aria-label="Search" className="hover:text-gray-300 transition-colors">
                             <Search size={20} />
                         </button>
+                        <Link href="/">
+                            <Image
+                                src="/images/logo2.png"
+                                alt="Logo"
+                                width={40}
+                                height={40}
+                                className="object-contain"
+                            />
+                        </Link>
                     </div>
                 </div>
 

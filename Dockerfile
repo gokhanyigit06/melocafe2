@@ -46,4 +46,7 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
+# Declare data directory as volume for persistent uploads
+VOLUME ["/app/data"]
+
 ENTRYPOINT ["./entrypoint.sh"]

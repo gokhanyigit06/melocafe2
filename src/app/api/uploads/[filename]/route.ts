@@ -19,9 +19,11 @@ export async function GET(
         return new NextResponse("Invalid filename", { status: 400 });
     }
 
-    // Locate the file in public/uploads
-    // Note: In production (standalone), this relies on the directory created by the upload route
-    const filePath = path.join(process.cwd(), "public/uploads", filename);
+    // Check persistent data directory first (Docker volume), then public/uploads
+    const dataPath = path.join(process.cwd(), "data/uploads", filename);
+    const publicPath = path.join(process.cwd(), "public/uploads", filename);
+
+    const filePath = existsSync(dataPath) ? dataPath : publicPath;
 
     if (!existsSync(filePath)) {
         return new NextResponse("File not found", { status: 404 });

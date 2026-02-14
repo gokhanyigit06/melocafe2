@@ -38,7 +38,10 @@ export async function POST(req: NextRequest) {
             finalType = "image/webp";
         }
 
-        const uploadDir = path.join(process.cwd(), "public/uploads");
+        // Use /app/data/uploads in production (Docker volume) or public/uploads locally
+        const uploadDir = process.env.NODE_ENV === "production"
+            ? path.join(process.cwd(), "data/uploads")
+            : path.join(process.cwd(), "public/uploads");
         try {
             await mkdir(uploadDir, { recursive: true });
         } catch (err) {

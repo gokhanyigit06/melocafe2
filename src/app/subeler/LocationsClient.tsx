@@ -3,12 +3,51 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useRef } from "react";
+
+// Dummy data for development/preview
+const DUMMY_LOCATIONS = [
+    {
+        id: "dummy-1",
+        title: "Northcote.",
+        address: "Unit 3, 12-16 Northcote Road, London SW11 1NX",
+        image_url: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1000",
+        tag: "Coming soon",
+        directions_url: "#"
+    },
+    {
+        id: "dummy-2",
+        title: "Park Ave South.",
+        address: "287 Park Ave South, New York, NY 10010",
+        image_url: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&q=80&w=1000",
+        tag: "Coming soon",
+        directions_url: "#"
+    },
+    {
+        id: "dummy-3",
+        title: "Saadiyat Horn.",
+        address: "Saadiyat Cultural District, Abu Dhabi, UAE",
+        image_url: "https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&q=80&w=1000",
+        tag: "Brunch",
+        directions_url: "#"
+    },
+    {
+        id: "dummy-4",
+        title: "Equestrian Club.",
+        address: "Unit 12, Galleria AlMaryah Island, Abu Dhabi",
+        image_url: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=1000",
+        tag: "Coming soon",
+        directions_url: "#"
+    }
+];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function LocationsClient({ initialLocations, settings }: { initialLocations: any[], settings: any }) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    // Use actual locations if available, otherwise fallback to dummy data
+    const displayLocations = initialLocations.length > 0 ? initialLocations : DUMMY_LOCATIONS;
 
     const scrollLeft = () => {
         if (scrollContainerRef.current) {
@@ -22,8 +61,8 @@ export default function LocationsClient({ initialLocations, settings }: { initia
         }
     };
 
-    const pageTitle = settings.locations_page_title || "Visit Us.";
-    const pageDescription = settings.locations_page_desc || "Each of our locations are designed to play a contemporary role in the Modern Coffee experience, while also preserving their unique history in the community.";
+    const pageTitle = settings.locations_page_title || "Bizi Ziyaret Edin.";
+    const pageDescription = settings.locations_page_desc || "Lokasyonlarımızın her biri, topluluktaki benzersiz geçmişlerini korurken Modern Kahve deneyiminde çağdaş bir rol oynayacak şekilde tasarlanmıştır.";
 
     return (
         <main className="min-h-screen bg-[#F5F2EA] text-black pt-32 pb-24">
@@ -36,7 +75,7 @@ export default function LocationsClient({ initialLocations, settings }: { initia
                             animate={{ opacity: 1 }}
                             className="text-xs font-bold tracking-widest uppercase text-gray-500"
                         >
-                            Find our locations
+                            Şubelerimizi Keşfedin
                         </motion.span>
 
                         <motion.h1
@@ -63,7 +102,7 @@ export default function LocationsClient({ initialLocations, settings }: { initia
             {/* Locations Carousel Section */}
             <section className="pl-6 md:pl-12 border-t border-black/10 pt-24 overflow-hidden">
                 <div className="container mx-auto pr-6 md:pr-12 mb-12 flex flex-col md:flex-row justify-between items-end gap-8">
-                    <h2 className="font-helvetica text-6xl font-bold tracking-tight">Locations.</h2>
+                    <h2 className="font-helvetica text-6xl font-bold tracking-tight">Şubeler.</h2>
                 </div>
 
                 {/* Carousel Controls (Mobile) */}
@@ -79,7 +118,7 @@ export default function LocationsClient({ initialLocations, settings }: { initia
                     style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}
                 >
                     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                    {initialLocations.map((loc: any, index: number) => (
+                    {displayLocations.map((loc: any, index: number) => (
                         <motion.div
                             key={loc.id}
                             initial={{ opacity: 0, x: 50 }}
@@ -112,15 +151,15 @@ export default function LocationsClient({ initialLocations, settings }: { initia
                                 <p className="font-causten text-sm text-gray-600">{loc.address}</p>
                                 {loc.directions_url && (
                                     <Link href={loc.directions_url} target="_blank" className="inline-block text-xs font-bold underline mt-2 hover:text-gray-500 uppercase tracking-widest">
-                                        View directions.
+                                        Yol Tarifi Al.
                                     </Link>
                                 )}
                             </div>
                         </motion.div>
                     ))}
 
-                    {/* Empty State */}
-                    {initialLocations.length === 0 && (
+                    {/* Empty State (Only if both real and dummy data are empty - unlikely with dummy data constant) */}
+                    {displayLocations.length === 0 && (
                         <div className="py-20 text-center w-full text-gray-400 uppercase tracking-widest font-bold">
                             Henüz şube bulunmuyor.
                         </div>
@@ -131,12 +170,12 @@ export default function LocationsClient({ initialLocations, settings }: { initia
                 </div>
 
                 {/* Desktop Navigation Arrows */}
-                {initialLocations.length > 0 && (
+                {displayLocations.length > 0 && (
                     <div className="hidden md:flex justify-end gap-4 pr-12">
                         <button onClick={scrollLeft} className="p-4 bg-black text-white rounded-full hover:bg-gray-800 transition-colors">
                             <ArrowLeft className="w-5 h-5" />
                         </button>
-                        <button onClick={scrollRight} className="p-4 bg-black text-white rounded-full hover:bg-gray-800 transition-colors">
+                        <button onClick={scrollRight} className="p-4 bg-black text-white rounded-full hover:bg-black hover:text-white transition-colors">
                             <ArrowRight className="w-5 h-5" />
                         </button>
                     </div>

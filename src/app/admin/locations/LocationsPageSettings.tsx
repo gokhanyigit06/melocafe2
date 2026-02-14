@@ -24,7 +24,7 @@ export default function LocationsPageSettings({ initialSettings }: { initialSett
                 body: JSON.stringify(settings),
             });
             if (!res.ok) throw new Error("Failed to save settings");
-            alert("Mağazalar sayfası ayarları kaydedildi!");
+            alert("Şubeler sayfası ayarları kaydedildi!");
             router.refresh();
         } catch (error) {
             console.error(error);

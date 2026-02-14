@@ -12,7 +12,7 @@ export default function VisitUs({ settings }: { settings?: any }) {
     const imgSmall = settings?.visit_img_small || "/images/coffee-shop-small.png";
 
     const btnText = settings?.visit_btn_text || "Şubelerimiz";
-    const btnLink = settings?.visit_btn_link || "/locations";
+    const btnLink = settings?.visit_btn_link || "/subeler";
 
     return (
         <section className="bg-[#F5F2EA] py-24 px-6 text-black">

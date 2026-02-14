@@ -45,19 +45,19 @@ export default function Header({ settings }: { settings?: any }) {
                     {/* Left Navigation (Desktop) */}
                     <nav className="hidden md:flex gap-8 text-sm font-medium tracking-wide">
                         <Link href="/" className="hover:opacity-75 transition-opacity">
-                            Anasayfa.
+                            Anasayfa
                         </Link>
                         <Link href="/locations" className="hover:opacity-75 transition-opacity">
-                            Mağazalar.
+                            Şubeler
                         </Link>
                         <Link href="/story" className="hover:opacity-75 transition-opacity">
-                            Hikayemiz.
+                            Hikayemiz
                         </Link>
                         <Link href="/contact" className="hover:opacity-75 transition-opacity">
-                            İletişim.
+                            İletişim
                         </Link>
                         <Link href="/highlights" className="hover:opacity-75 transition-opacity">
-                            Öne Çıkanlar.
+                            Öne Çıkanlar
                         </Link>
                     </nav>
 
@@ -110,19 +110,19 @@ export default function Header({ settings }: { settings?: any }) {
                         </button>
                         <nav className="flex flex-col items-center gap-6 text-2xl font-serif">
                             <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-                                Anasayfa.
+                                Anasayfa
                             </Link>
                             <Link href="/locations" onClick={() => setIsMobileMenuOpen(false)}>
-                                Mağazalar.
+                                Şubeler
                             </Link>
                             <Link href="/story" onClick={() => setIsMobileMenuOpen(false)}>
-                                Hikayemiz.
+                                Hikayemiz
                             </Link>
                             <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                                İletişim.
+                                İletişim
                             </Link>
                             <Link href="/highlights" onClick={() => setIsMobileMenuOpen(false)}>
-                                Öne Çıkanlar.
+                                Öne Çıkanlar
                             </Link>
                         </nav>
                     </div>

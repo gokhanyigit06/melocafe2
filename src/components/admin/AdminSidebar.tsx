@@ -22,7 +22,7 @@ const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/admin" },
     { icon: Coffee, label: "Blog Yazıları", href: "/admin/posts" },
     { icon: Package, label: "Servisler (Menü)", href: "/admin/services" },
-    { icon: Store, label: "Mağazalar", href: "/admin/locations" },
+    { icon: Store, label: "Şubeler", href: "/admin/locations" },
     { icon: ImageIcon, label: "Medya Kütüphanesi", href: "/admin/media" },
     { type: "divider", label: "Sayfa Ayarları" },
     { icon: Home, label: "Ana Sayfa", href: "/admin/settings/homepage" },

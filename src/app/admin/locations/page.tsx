@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { db } from "@/lib/db";
-import { Plus, Edit2, Trash2, MapPin } from "lucide-react";
+import { Plus, Edit2, MapPin } from "lucide-react";
 import LocationsPageSettings from "./LocationsPageSettings";
+import DeleteLocationButton from "./DeleteLocationButton";
 import Image from "next/image";
 
 export const dynamic = "force-dynamic";
@@ -36,8 +37,8 @@ export default async function LocationsPage() {
         <div className="space-y-12">
             <div className="flex items-center justify-between border-b border-slate-200 pb-8">
                 <div>
-                    <h1 className="text-3xl font-black text-slate-900 uppercase tracking-tighter">Mağazalar Yönetimi</h1>
-                    <p className="text-slate-500 mt-1 font-medium">Şubelerinizi ve Mağazalar sayfasının genel içeriğini buradan yönetin.</p>
+                    <h1 className="text-3xl font-black text-slate-900 uppercase tracking-tighter">Şubeler Yönetimi</h1>
+                    <p className="text-slate-500 mt-1 font-medium">Şubelerinizi ve Şubeler sayfasının genel içeriğini buradan yönetin.</p>
                 </div>
                 <Link
                     href="/admin/locations/new"
@@ -90,9 +91,7 @@ export default async function LocationsPage() {
                                         >
                                             <Edit2 className="w-4 h-4" />
                                         </Link>
-                                        <button className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                                            <Trash2 className="w-4 h-4" />
-                                        </button>
+                                        <DeleteLocationButton id={loc.id} />
                                     </div>
                                     <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${loc.is_active ? "bg-green-100 text-green-700" : "bg-slate-100 text-slate-500"}`}>
                                         {loc.is_active ? "AKTİF" : "PASİF"}

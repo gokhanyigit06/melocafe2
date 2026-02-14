@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Instagram, Linkedin, ArrowRight, Globe } from "lucide-react";
+import { Instagram, ArrowRight, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -12,13 +12,11 @@ export default function Footer({ settings }: { settings?: any }) {
     const [isLangOpen, setIsLangOpen] = useState(false);
 
     const bigText = settings?.footer_big_text || "Londra'nın ünlü Bermondsey Caddesi'ndeki eski bir 19. yüzyıl saat evinden gururla doğdu.";
-    const newsletterTitle = settings?.footer_newsletter_title || "Perk up your inbox.";
+    const newsletterTitle = settings?.footer_newsletter_title || "Bültenimize Abone Olun.";
     const newsletterDesc = settings?.footer_newsletter_description || "Abone olun ve ilk siparişinizde %10 indirim kazanın, ayrıca en havalı kahve çekirdeklerine hala soğumadan erişim sağlayın.";
 
     const socialLinks = {
-        facebook: settings?.social_facebook || "#",
-        instagram: settings?.social_instagram || "#",
-        linkedin: settings?.social_linkedin || "#"
+        instagram: settings?.social_instagram || "#"
     };
 
     // Animation variants for the big text
@@ -88,30 +86,13 @@ export default function Footer({ settings }: { settings?: any }) {
                 <div className="w-full h-px bg-white/10 mb-16"></div>
 
                 {/* Links Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24 text-sm tracking-widest">
-                    <div>
-                        <h4 className="font-helvetica font-bold mb-6 text-white">Locations.</h4>
-                        <ul className="space-y-4 text-gray-400">
-                            <li><Link href="/locations" className="hover:text-white transition-colors">VISIT US.</Link></li>
-                            <li><Link href="#" className="hover:text-white transition-colors">EVENTS.</Link></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 className="font-helvetica font-bold mb-6 text-white">About us.</h4>
-                        <ul className="space-y-4 text-gray-400">
-                            <li><Link href="/highlights" className="hover:text-white transition-colors">HIGHLIGHTS.</Link></li>
-                            <li><Link href="/story" className="hover:text-white transition-colors">OUR STORY.</Link></li>
-                        </ul>
-                    </div>
-                </div>
+
 
                 {/* Bottom Bar */}
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-xs text-gray-500 uppercase tracking-wider">
                     {/* Socials */}
                     <div className="flex gap-6">
-                        <Link href={socialLinks.facebook} className="hover:text-white transition-colors"><Facebook className="w-5 h-5" /></Link>
                         <Link href={socialLinks.instagram} className="hover:text-white transition-colors"><Instagram className="w-5 h-5" /></Link>
-                        <Link href={socialLinks.linkedin} className="hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></Link>
                     </div>
 
                     {/* Language Selector */}
@@ -145,9 +126,9 @@ export default function Footer({ settings }: { settings?: any }) {
                     {/* Legal */}
                     <div className="flex gap-6">
                         <span>2026</span>
-                        <Link href="#" className="hover:text-white transition-colors">TERMS</Link>
-                        <Link href="#" className="hover:text-white transition-colors">PRIVACY</Link>
-                        <Link href="#" className="hover:text-white transition-colors">COOKIES</Link>
+                        <Link href="#" className="hover:text-white transition-colors">ŞARTLAR</Link>
+                        <Link href="#" className="hover:text-white transition-colors">GİZLİLİK</Link>
+                        <Link href="#" className="hover:text-white transition-colors">ÇEREZLER</Link>
                     </div>
                 </div>
             </div >

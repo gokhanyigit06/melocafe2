@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 
 async function getLocations() {
     try {
-        const result = await db.query("SELECT * FROM locations WHERE is_active = 1 ORDER BY created_at DESC");
+        const result = await db.query("SELECT * FROM locations WHERE is_active = true ORDER BY created_at DESC");
         return result.rows;
     } catch (e) {
         console.error(e);

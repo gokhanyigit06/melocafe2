@@ -17,6 +17,7 @@ export default function Header({ settings }: { settings?: any }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const pathname = usePathname();
     const isHomePage = pathname === "/";
+    const isBlueBgPage = ["/subeler", "/iletisim", "/hikayemiz", "/blog", "/highlights", "/locations", "/story", "/contact"].includes(pathname);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -38,25 +39,25 @@ export default function Header({ settings }: { settings?: any }) {
             <header
                 className={`w-full z-40 transition-all duration-700 ease-in-out ${isScrolled
                     ? "fixed top-0 bg-[#0a2b4e]/95 backdrop-blur-md text-white shadow-sm py-4"
-                    : `absolute top-[40px] bg-transparent py-6 ${isHomePage ? "text-white" : "text-black"}`
+                    : `${isBlueBgPage ? "relative bg-[#0a2b4e]" : "absolute top-[36px] bg-transparent"} py-6 ${isHomePage || isBlueBgPage ? "text-white" : "text-black"}`
                     }`}
             >
                 <div className="container mx-auto px-6 flex items-center justify-between">
                     {/* Left Navigation (Desktop) */}
-                    <nav className="hidden md:flex gap-8 text-sm font-medium tracking-wide">
+                    <nav className="hidden md:flex gap-8 text-sm font-medium tracking-wide items-center w-5/12">
                         <Link href="/" className="hover:opacity-75 transition-opacity">
                             Anasayfa
                         </Link>
-                        <Link href="/locations" className="hover:opacity-75 transition-opacity">
+                        <Link href="/subeler" className="hover:opacity-75 transition-opacity">
                             Şubeler
                         </Link>
-                        <Link href="/story" className="hover:opacity-75 transition-opacity">
+                        <Link href="/hikayemiz" className="hover:opacity-75 transition-opacity">
                             Hikayemiz
                         </Link>
-                        <Link href="/contact" className="hover:opacity-75 transition-opacity">
+                        <Link href="/iletisim" className="hover:opacity-75 transition-opacity">
                             İletişim
                         </Link>
-                        <Link href="/highlights" className="hover:opacity-75 transition-opacity">
+                        <Link href="/blog" className="hover:opacity-75 transition-opacity">
                             Öne Çıkanlar
                         </Link>
                     </nav>
@@ -70,8 +71,8 @@ export default function Header({ settings }: { settings?: any }) {
                     </button>
 
                     {/* Logo (Center) */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2">
-                        <Link href="/" className="block relative w-48 h-[72px] flex items-center justify-center">
+                    <div className="absolute left-1/2 transform -translate-x-1/2 flex justify-center items-center">
+                        <Link href="/" className="block relative w-48 h-[60px] flex items-center justify-center">
                             {logoUrl ? (
                                 <Image
                                     src={logoUrl}
@@ -89,7 +90,7 @@ export default function Header({ settings }: { settings?: any }) {
                     </div>
 
                     {/* Right Actions (Icon Buttons) */}
-                    <div className="hidden md:flex items-center space-x-6">
+                    <div className="hidden md:flex items-center justify-end space-x-6 w-5/12">
                         <button aria-label="Account" className="hover:text-gray-300 transition-colors">
                             <User size={20} />
                         </button>
@@ -112,16 +113,16 @@ export default function Header({ settings }: { settings?: any }) {
                             <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
                                 Anasayfa
                             </Link>
-                            <Link href="/locations" onClick={() => setIsMobileMenuOpen(false)}>
+                            <Link href="/subeler" onClick={() => setIsMobileMenuOpen(false)}>
                                 Şubeler
                             </Link>
-                            <Link href="/story" onClick={() => setIsMobileMenuOpen(false)}>
+                            <Link href="/hikayemiz" onClick={() => setIsMobileMenuOpen(false)}>
                                 Hikayemiz
                             </Link>
-                            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                            <Link href="/iletisim" onClick={() => setIsMobileMenuOpen(false)}>
                                 İletişim
                             </Link>
-                            <Link href="/highlights" onClick={() => setIsMobileMenuOpen(false)}>
+                            <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>
                                 Öne Çıkanlar
                             </Link>
                         </nav>

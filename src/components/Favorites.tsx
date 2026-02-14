@@ -25,8 +25,18 @@ export default function Favorites({ settings }: { settings?: any }) {
     const mainTitle = settings?.favorites_title || "Favorilerimiz.";
 
     return (
-        <section className="bg-[#F5F2EA] py-20 px-6 text-black">
-            <div className="container mx-auto">
+        <section className="relative py-20 px-6 text-white overflow-hidden">
+            <div
+                className="absolute inset-0 z-0"
+                style={{
+                    background: `
+                        radial-gradient(ellipse 120% 80% at 20% 20%, rgba(15, 45, 75, 0.9) 0%, transparent 60%),
+                        radial-gradient(ellipse 100% 100% at 80% 80%, rgba(10, 30, 55, 0.95) 0%, transparent 50%),
+                        linear-gradient(160deg, #0a1a2e 0%, #0d2a45 25%, #0f3555 45%, #0b2640 65%, #071a30 100%)
+                    `,
+                }}
+            />
+            <div className="container mx-auto relative z-10">
                 <div className="flex justify-between items-center mb-16">
                     <h2 className="font-serif text-5xl font-bold tracking-tight">
                         {mainTitle}
@@ -41,13 +51,13 @@ export default function Favorites({ settings }: { settings?: any }) {
                                 <img
                                     src={item.image}
                                     alt={item.title}
-                                    className="absolute inset-0 w-full h-full object-contain mix-blend-multiply"
+                                    className="absolute inset-0 w-full h-full object-contain"
                                 />
                             </div>
                             <h3 className="font-serif text-xl font-bold mb-3">
                                 {item.title}
                             </h3>
-                            <p className="text-sm text-gray-600 max-w-xs leading-relaxed">
+                            <p className="text-sm text-white/70 max-w-xs leading-relaxed">
                                 {item.description}
                             </p>
                         </div>

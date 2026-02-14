@@ -49,8 +49,18 @@ export default function Journal({ posts = [] }: { posts?: Post[] }) {
     const tertiaryPost = displayPosts[2];
 
     return (
-        <section className="bg-[#F5F2EA] py-24 px-6 text-black border-t border-black/5 font-causten">
-            <div className="container mx-auto">
+        <section className="relative py-24 px-6 text-white overflow-hidden font-causten">
+            <div
+                className="absolute inset-0 z-0"
+                style={{
+                    background: `
+                        radial-gradient(ellipse 120% 80% at 20% 20%, rgba(15, 45, 75, 0.9) 0%, transparent 60%),
+                        radial-gradient(ellipse 100% 100% at 80% 80%, rgba(10, 30, 55, 0.95) 0%, transparent 50%),
+                        linear-gradient(160deg, #0a1a2e 0%, #0d2a45 25%, #0f3555 45%, #0b2640 65%, #071a30 100%)
+                    `,
+                }}
+            />
+            <div className="container mx-auto relative z-10">
                 {/* Header Section */}
                 <div className="flex flex-col lg:flex-row justify-between items-start mb-20 gap-12">
                     <motion.h2
@@ -70,14 +80,14 @@ export default function Journal({ posts = [] }: { posts?: Post[] }) {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="lg:w-1/2 space-y-8"
                     >
-                        <p className="text-lg leading-relaxed text-gray-800 max-w-xl">
+                        <p className="text-lg leading-relaxed text-white/80 max-w-xl">
                             25 square metres on London&apos;s famous Bermondsey Street was all it took to conceive
                             WatchHouse and lay the foundations of everything to come. Historically a shelter for men
                             guarding the graveyard of St Mary Magdalen&apos;s Church.
                         </p>
                         <Link
                             href="/highlights"
-                            className="inline-block px-10 py-3 border border-black rounded-full text-xs font-bold tracking-[0.2em] hover:bg-black hover:text-white transition-all uppercase"
+                            className="inline-block px-10 py-3 border border-white rounded-full text-xs font-bold tracking-[0.2em] hover:bg-white hover:text-[#0a1628] transition-all uppercase"
                         >
                             Explore Highlights
                         </Link>
@@ -134,13 +144,13 @@ export default function Journal({ posts = [] }: { posts?: Post[] }) {
                             >
                                 <div className="flex flex-col md:flex-row gap-8 items-start">
                                     <div className="md:w-3/5 space-y-6 order-2 md:order-1">
-                                        <div className="w-full h-px bg-black/10 mb-8" />
-                                        <span className="text-xs font-bold tracking-widest uppercase block">Spotlight.</span>
+                                        <div className="w-full h-px bg-white/10 mb-8" />
+                                        <span className="text-xs font-bold tracking-widest uppercase block text-white/60">Spotlight.</span>
                                         <h4 className="text-2xl font-bold font-helvetica uppercase tracking-tight">{secondaryPost.title}</h4>
-                                        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                                        <p className="text-white/70 text-sm leading-relaxed line-clamp-3">
                                             {secondaryPost.excerpt}
                                         </p>
-                                        <Link href={`/highlights/${secondaryPost.slug}`} className="inline-block text-xs font-bold border-b border-black pb-1 hover:opacity-60 transition-opacity uppercase tracking-tighter">
+                                        <Link href={`/highlights/${secondaryPost.slug}`} className="inline-block text-xs font-bold border-b border-white pb-1 hover:opacity-60 transition-opacity uppercase tracking-tighter">
                                             Read more.
                                         </Link>
                                     </div>
@@ -175,13 +185,13 @@ export default function Journal({ posts = [] }: { posts?: Post[] }) {
                                         />
                                     </div>
                                     <div className="md:w-3/5 space-y-6">
-                                        <div className="w-full h-px bg-black/10 mb-8" />
-                                        <span className="text-xs font-bold tracking-widest uppercase block">Spotlight.</span>
+                                        <div className="w-full h-px bg-white/10 mb-8" />
+                                        <span className="text-xs font-bold tracking-widest uppercase block text-white/60">Spotlight.</span>
                                         <h4 className="text-2xl font-bold font-helvetica uppercase tracking-tight">{tertiaryPost.title}</h4>
-                                        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                                        <p className="text-white/70 text-sm leading-relaxed line-clamp-3">
                                             {tertiaryPost.excerpt}
                                         </p>
-                                        <Link href={`/highlights/${tertiaryPost.slug}`} className="inline-block text-xs font-bold border-b border-black pb-1 hover:opacity-60 transition-opacity uppercase tracking-tighter">
+                                        <Link href={`/highlights/${tertiaryPost.slug}`} className="inline-block text-xs font-bold border-b border-white pb-1 hover:opacity-60 transition-opacity uppercase tracking-tighter">
                                             Read more.
                                         </Link>
                                     </div>

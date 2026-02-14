@@ -15,8 +15,18 @@ export default function VisitUs({ settings }: { settings?: any }) {
     const btnLink = settings?.visit_btn_link || "/subeler";
 
     return (
-        <section className="bg-[#F5F2EA] py-24 px-6 text-black">
-            <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
+        <section className="relative py-24 px-6 text-white overflow-hidden">
+            <div
+                className="absolute inset-0 z-0"
+                style={{
+                    background: `
+                        radial-gradient(ellipse 120% 80% at 20% 20%, rgba(15, 45, 75, 0.9) 0%, transparent 60%),
+                        radial-gradient(ellipse 100% 100% at 80% 80%, rgba(10, 30, 55, 0.95) 0%, transparent 50%),
+                        linear-gradient(160deg, #0a1a2e 0%, #0d2a45 25%, #0f3555 45%, #0b2640 65%, #071a30 100%)
+                    `,
+                }}
+            />
+            <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 items-start relative z-10">
                 {/* Left Column: Large Image */}
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
@@ -45,12 +55,12 @@ export default function VisitUs({ settings }: { settings?: any }) {
                         <h2 className="font-serif text-5xl md:text-7xl font-bold leading-tight tracking-tight">
                             {title}
                         </h2>
-                        <p className="text-gray-800 text-lg leading-relaxed max-w-md">
+                        <p className="text-white/80 text-lg leading-relaxed max-w-md">
                             {description}
                         </p>
                         <Link
                             href={btnLink}
-                            className="inline-block px-8 py-3 border border-black rounded-full text-sm font-medium tracking-widest hover:bg-black hover:text-white transition-colors uppercase"
+                            className="inline-block px-8 py-3 border border-white rounded-full text-sm font-medium tracking-widest hover:bg-white hover:text-[#0a1628] transition-all uppercase"
                         >
                             {btnText}
                         </Link>

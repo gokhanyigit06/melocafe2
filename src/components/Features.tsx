@@ -27,8 +27,18 @@ export default function Features({ settings }: { settings?: any }) {
     ];
 
     return (
-        <section className="bg-[#F5F2EA] py-24 px-6 text-black border-y border-black/5">
-            <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 text-center md:text-left">
+        <section className="relative py-24 px-6 text-white border-y border-white/10 overflow-hidden">
+            <div
+                className="absolute inset-0 z-0"
+                style={{
+                    background: `
+                        radial-gradient(ellipse 120% 80% at 20% 20%, rgba(15, 45, 75, 0.9) 0%, transparent 60%),
+                        radial-gradient(ellipse 100% 100% at 80% 80%, rgba(10, 30, 55, 0.95) 0%, transparent 50%),
+                        linear-gradient(160deg, #0a1a2e 0%, #0d2a45 25%, #0f3555 45%, #0b2640 65%, #071a30 100%)
+                    `,
+                }}
+            />
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 text-center md:text-left relative z-10">
                 {featureData.map((feature, index) => (
                     <div key={index} className="flex flex-col md:flex-row items-center md:items-start gap-8">
                         <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center">
@@ -42,14 +52,14 @@ export default function Features({ settings }: { settings?: any }) {
                                     />
                                 </div>
                             ) : (
-                                <feature.defaultIcon strokeWidth={1} className="w-12 h-12 text-black" />
+                                <feature.defaultIcon strokeWidth={1} className="w-12 h-12 text-white" />
                             )}
                         </div>
                         <div className="space-y-4">
                             <h3 className="font-serif text-2xl font-bold leading-tight">
                                 {feature.title}
                             </h3>
-                            <p className="text-sm text-gray-700 leading-relaxed max-w-xs mx-auto md:mx-0">
+                            <p className="text-sm text-white/70 leading-relaxed max-w-xs mx-auto md:mx-0">
                                 {feature.description}
                             </p>
                         </div>

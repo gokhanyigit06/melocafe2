@@ -62,16 +62,26 @@ export default function LocationsSection({ locations }: { locations: any[] }) {
     };
 
     return (
-        <section className="bg-[#F5F2EA] text-black pl-6 md:pl-12 py-24 overflow-hidden">
-            <div className="container mx-auto pr-6 md:pr-12 mb-12 flex flex-col md:flex-row justify-between items-end gap-8">
+        <section className="relative text-white pl-6 md:pl-12 py-24 overflow-hidden">
+            <div
+                className="absolute inset-0 z-0"
+                style={{
+                    background: `
+                        radial-gradient(ellipse 120% 80% at 20% 20%, rgba(15, 45, 75, 0.9) 0%, transparent 60%),
+                        radial-gradient(ellipse 100% 100% at 80% 80%, rgba(10, 30, 55, 0.95) 0%, transparent 50%),
+                        linear-gradient(160deg, #0a1a2e 0%, #0d2a45 25%, #0f3555 45%, #0b2640 65%, #071a30 100%)
+                    `,
+                }}
+            />
+            <div className="container mx-auto pr-6 md:pr-12 mb-12 flex flex-col md:flex-row justify-between items-end gap-8 relative z-10">
                 <h2 className="font-helvetica text-6xl font-bold tracking-tight">Şubeleri Gör</h2>
 
                 {/* Desktop Navigation Arrows */}
                 <div className="hidden md:flex gap-4">
-                    <button onClick={scrollLeft} className="p-4 bg-black text-white rounded-full hover:bg-gray-800 transition-colors">
+                    <button onClick={scrollLeft} className="p-4 bg-white text-[#0a1628] rounded-full hover:bg-white/90 transition-colors">
                         <ArrowLeft className="w-5 h-5" />
                     </button>
-                    <button onClick={scrollRight} className="p-4 bg-black text-white rounded-full hover:bg-gray-800 transition-colors">
+                    <button onClick={scrollRight} className="p-4 bg-white text-[#0a1628] rounded-full hover:bg-white/90 transition-colors">
                         <ArrowRight className="w-5 h-5" />
                     </button>
                 </div>
@@ -79,8 +89,8 @@ export default function LocationsSection({ locations }: { locations: any[] }) {
 
             {/* Carousel Controls (Mobile) */}
             <div className="flex gap-4 mb-8 px-6 md:hidden">
-                <button onClick={scrollLeft} className="p-3 border border-black rounded-full hover:bg-black hover:text-white transition-colors"><ArrowLeft size={20} /></button>
-                <button onClick={scrollRight} className="p-3 border border-black rounded-full hover:bg-black hover:text-white transition-colors"><ArrowRight size={20} /></button>
+                <button onClick={scrollLeft} className="p-3 border border-white rounded-full hover:bg-white hover:text-[#0a1628] transition-colors"><ArrowLeft size={20} /></button>
+                <button onClick={scrollRight} className="p-3 border border-white rounded-full hover:bg-white hover:text-[#0a1628] transition-colors"><ArrowRight size={20} /></button>
             </div>
 
             {/* Draggable/Scrollable Row */}
@@ -112,11 +122,11 @@ export default function LocationsSection({ locations }: { locations: any[] }) {
                             )}
 
                         </div>
-                        <div className="space-y-2 border-t border-black/10 pt-4">
+                        <div className="space-y-2 border-t border-white/10 pt-4 relative z-10">
                             <h3 className="font-helvetica text-2xl font-bold">{loc.title}</h3>
-                            <p className="font-causten text-sm text-gray-600">{loc.address}</p>
+                            <p className="font-causten text-sm text-white/70">{loc.address}</p>
                             {loc.directions_url && (
-                                <Link href={loc.directions_url} target="_blank" className="inline-block text-xs font-bold underline mt-2 hover:text-gray-500 uppercase tracking-widest">
+                                <Link href={loc.directions_url} target="_blank" className="inline-block text-xs font-bold underline mt-2 hover:text-white/60 uppercase tracking-widest text-white">
                                     Yol Tarifi Al.
                                 </Link>
                             )}

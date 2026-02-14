@@ -36,8 +36,18 @@ export default function ImageShowcase({ settings }: { settings?: any }) {
     ];
 
     return (
-        <section className="w-full bg-[#F5F2EA]">
-            <div className="grid grid-cols-2">
+        <section className="w-full relative overflow-hidden">
+            <div
+                className="absolute inset-0 z-0"
+                style={{
+                    background: `
+                        radial-gradient(ellipse 120% 80% at 20% 20%, rgba(15, 45, 75, 0.9) 0%, transparent 60%),
+                        radial-gradient(ellipse 100% 100% at 80% 80%, rgba(10, 30, 55, 0.95) 0%, transparent 50%),
+                        linear-gradient(160deg, #0a1a2e 0%, #0d2a45 25%, #0f3555 45%, #0b2640 65%, #071a30 100%)
+                    `,
+                }}
+            />
+            <div className="relative z-10 grid grid-cols-2">
                 {showcaseItems.map((item, index) => (
                     <div
                         key={index}

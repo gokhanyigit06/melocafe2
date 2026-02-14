@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Favorites({ settings }: { settings?: any }) {
@@ -37,11 +37,11 @@ export default function Favorites({ settings }: { settings?: any }) {
                     {favoritesData.map((item, index) => (
                         <div key={index} className="flex flex-col items-center text-center group cursor-pointer">
                             <div className="relative w-full aspect-square mb-8 transition-transform duration-300 group-hover:scale-[1.02]">
-                                <Image
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src={item.image}
                                     alt={item.title}
-                                    fill
-                                    className="object-contain mix-blend-multiply"
+                                    className="absolute inset-0 w-full h-full object-contain mix-blend-multiply"
                                 />
                             </div>
                             <h3 className="font-serif text-xl font-bold mb-3">

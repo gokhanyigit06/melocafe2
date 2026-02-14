@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 
 interface ShowcaseItem {
@@ -9,31 +8,32 @@ interface ShowcaseItem {
     subtitle: string;
 }
 
-const showcaseItems: ShowcaseItem[] = [
-    {
-        image: "/images/varlik1.png",
-        title: "Doğru Teknikler",
-        subtitle: "",
-    },
-    {
-        image: "/images/varlik2.png",
-        title: "Doğru Ekipmanlar",
-        subtitle: "",
-    },
-    {
-        image: "/images/varlik4.png",
-        title: "Bilgiyle Yönetilen Süreçler",
-        subtitle: "",
-    },
-    {
-        image: "/images/varlik3.png",
-        title: "Amaç en iyi sonucu elde etmektir",
-        subtitle: "",
-    },
-];
-
-export default function ImageShowcase() {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function ImageShowcase({ settings }: { settings?: any }) {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+    const showcaseItems: ShowcaseItem[] = [
+        {
+            image: settings?.showcase1_image || "/images/varlik1.png",
+            title: settings?.showcase1_title || "Doğru Teknikler",
+            subtitle: settings?.showcase1_subtitle || "",
+        },
+        {
+            image: settings?.showcase2_image || "/images/varlik2.png",
+            title: settings?.showcase2_title || "Doğru Ekipmanlar",
+            subtitle: settings?.showcase2_subtitle || "",
+        },
+        {
+            image: settings?.showcase3_image || "/images/varlik4.png",
+            title: settings?.showcase3_title || "Bilgiyle Yönetilen Süreçler",
+            subtitle: settings?.showcase3_subtitle || "",
+        },
+        {
+            image: settings?.showcase4_image || "/images/varlik3.png",
+            title: settings?.showcase4_title || "Amaç en iyi sonucu elde etmektir",
+            subtitle: settings?.showcase4_subtitle || "",
+        },
+    ];
 
     return (
         <section className="w-full bg-[#F5F2EA]">
@@ -46,14 +46,13 @@ export default function ImageShowcase() {
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
                     >
-                        {/* Image */}
-                        <Image
+                        {/* Image - using img tag to avoid Next.js remote pattern issues */}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             src={item.image}
                             alt={item.title}
-                            fill
-                            className={`object-cover transition-transform duration-700 ease-out ${hoveredIndex === index ? "scale-110" : "scale-100"
+                            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out ${hoveredIndex === index ? "scale-110" : "scale-100"
                                 }`}
-                            sizes="(max-width: 768px) 50vw, 25vw"
                         />
 
                         {/* Gradient Overlay */}

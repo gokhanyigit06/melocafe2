@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Save, Loader2, Video, Type, Home, Sparkles, Star, Quote, Layout } from "lucide-react";
+import { Save, Loader2, Video, Type, Home, Sparkles, Star, Quote, Layout, Eye } from "lucide-react";
 import ImageUpload from "@/components/admin/ImageUpload";
 import { useRouter } from "next/navigation";
 
@@ -115,13 +115,110 @@ export default function HomepageSettings() {
                     </div>
                 </section>
 
-                {/* 2. FEATURES SECTION */}
+                {/* 2. GÖRSEL VİTRİN (IMAGE SHOWCASE) SECTION */}
+                <section className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-8">
+                    <div className="flex items-center gap-4 border-b border-slate-50 pb-6">
+                        <div className="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-600">
+                            <Layout className="w-6 h-6" />
+                        </div>
+                        <h2 className="text-2xl font-black text-slate-900 uppercase">2. Görsel Vitrin (4&apos;lü Alan)</h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {[1, 2, 3, 4].map(i => (
+                            <div key={i} className="p-6 rounded-2xl border border-slate-100 bg-slate-50 space-y-4">
+                                <h3 className="text-sm font-black text-teal-600 uppercase italic underline decoration-2">Görsel {i}</h3>
+                                <div className="space-y-3">
+                                    <ImageUpload
+                                        label="Görsel"
+                                        value={settings[`showcase${i}_image`] || ""}
+                                        onChange={(url) => handleChange(`showcase${i}_image`, url)}
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase">Başlık</label>
+                                    <input value={settings[`showcase${i}_title`] || ""} onChange={(e) => handleChange(`showcase${i}_title`, e.target.value)} className="w-full px-3 py-2 rounded-lg border bg-white font-bold text-sm" />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase">Alt Başlık (Opsiyonel)</label>
+                                    <input value={settings[`showcase${i}_subtitle`] || ""} onChange={(e) => handleChange(`showcase${i}_subtitle`, e.target.value)} className="w-full px-3 py-2 rounded-lg border bg-white text-sm" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* 3. SCROLL REVEAL STORY SECTION */}
+                <section className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-8">
+                    <div className="flex items-center gap-4 border-b border-slate-50 pb-6">
+                        <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600">
+                            <Eye className="w-6 h-6" />
+                        </div>
+                        <h2 className="text-2xl font-black text-slate-900 uppercase">3. Scroll Reveal (Yazı Efektli Bölüm)</h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="space-y-6">
+                            <div className="space-y-3">
+                                <label className="text-xs font-black text-slate-400 uppercase">Metin</label>
+                                <textarea
+                                    value={settings.scroll_reveal_text || ""}
+                                    onChange={(e) => handleChange("scroll_reveal_text", e.target.value)}
+                                    rows={4}
+                                    className="w-full px-5 py-4 rounded-2xl border border-slate-200 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all font-serif text-lg"
+                                    placeholder="Melo, anlık tatminin yavaş bir yorumudur..."
+                                />
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-3">
+                                    <label className="text-xs font-black text-slate-400 uppercase">Yazı Boyutu</label>
+                                    <select
+                                        value={settings.scroll_reveal_text_size || "large"}
+                                        onChange={(e) => handleChange("scroll_reveal_text_size", e.target.value)}
+                                        className="w-full px-5 py-4 rounded-2xl border border-slate-200 font-bold bg-white"
+                                    >
+                                        <option value="large">Büyük (Standart)</option>
+                                        <option value="medium">Orta</option>
+                                        <option value="small">Küçük</option>
+                                    </select>
+                                </div>
+                                <div className="space-y-3">
+                                    <label className="text-xs font-black text-slate-400 uppercase">Buton Yazısı</label>
+                                    <input
+                                        value={settings.scroll_reveal_btn_text || ""}
+                                        onChange={(e) => handleChange("scroll_reveal_btn_text", e.target.value)}
+                                        className="w-full px-5 py-4 rounded-2xl border border-slate-200 font-bold"
+                                        placeholder="HİKAYEMİZ"
+                                    />
+                                </div>
+                            </div>
+                            <div className="space-y-3">
+                                <label className="text-xs font-black text-slate-400 uppercase">Buton Link</label>
+                                <input
+                                    value={settings.scroll_reveal_btn_link || ""}
+                                    onChange={(e) => handleChange("scroll_reveal_btn_link", e.target.value)}
+                                    className="w-full px-5 py-4 rounded-2xl border border-slate-200 font-mono text-sm"
+                                    placeholder="/hikayemiz"
+                                />
+                            </div>
+                        </div>
+                        <div className="space-y-3">
+                            <ImageUpload
+                                label="Arka Plan Görseli"
+                                value={settings.scroll_reveal_image || ""}
+                                onChange={(url) => handleChange("scroll_reveal_image", url)}
+                            />
+                        </div>
+                    </div>
+                </section>
+
+                {/* 4. FEATURES SECTION */}
                 <section className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-8">
                     <div className="flex items-center gap-4 border-b border-slate-50 pb-6">
                         <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600">
                             <Layout className="w-6 h-6" />
                         </div>
-                        <h2 className="text-2xl font-black text-slate-900 uppercase">2. Özellikler (Features) Bölümü</h2>
+                        <h2 className="text-2xl font-black text-slate-900 uppercase">4. Özellikler (Features) Bölümü</h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -156,7 +253,7 @@ export default function HomepageSettings() {
                         <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-600">
                             <Star className="w-6 h-6" />
                         </div>
-                        <h2 className="text-2xl font-black text-slate-900 uppercase">3. Favoriler Bölümü</h2>
+                        <h2 className="text-2xl font-black text-slate-900 uppercase">5. Favoriler Bölümü</h2>
                     </div>
 
                     <div className="space-y-6">
@@ -197,7 +294,7 @@ export default function HomepageSettings() {
                         <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600">
                             <Type className="w-6 h-6" />
                         </div>
-                        <h2 className="text-2xl font-black text-slate-900 uppercase">4. Nitro Brew Bölümü</h2>
+                        <h2 className="text-2xl font-black text-slate-900 uppercase">6. Nitro Brew Bölümü</h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -242,7 +339,7 @@ export default function HomepageSettings() {
                         <div className="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600">
                             <Quote className="w-6 h-6" />
                         </div>
-                        <h2 className="text-2xl font-black text-slate-900 uppercase">5. Basın / Yorumlar (Marquee)</h2>
+                        <h2 className="text-2xl font-black text-slate-900 uppercase">7. Basın / Yorumlar (Marquee)</h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -276,7 +373,7 @@ export default function HomepageSettings() {
                         <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600">
                             <Sparkles className="w-6 h-6" />
                         </div>
-                        <h2 className="text-2xl font-black text-slate-900 uppercase">6. Parallax Hikaye (Alt Bölüm)</h2>
+                        <h2 className="text-2xl font-black text-slate-900 uppercase">8. Parallax Hikaye (Alt Bölüm)</h2>
                     </div>
 
                     <div className="space-y-6">
@@ -325,7 +422,7 @@ export default function HomepageSettings() {
                         <div className="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-600">
                             <Home className="w-6 h-6" />
                         </div>
-                        <h2 className="text-2xl font-black text-slate-900 uppercase">7. Bizi Ziyaret Et Bölümü</h2>
+                        <h2 className="text-2xl font-black text-slate-900 uppercase">9. Bizi Ziyaret Et Bölümü</h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

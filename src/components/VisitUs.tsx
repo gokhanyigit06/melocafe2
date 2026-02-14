@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -25,11 +25,11 @@ export default function VisitUs({ settings }: { settings?: any }) {
                     transition={{ duration: 0.8 }}
                     className="relative w-full aspect-[4/5] overflow-hidden rounded-lg shadow-xl"
                 >
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                         src={imgLarge}
                         alt="Melo Coffee Shop Exterior"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-700"
+                        className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                 </motion.div>
 
@@ -63,11 +63,11 @@ export default function VisitUs({ settings }: { settings?: any }) {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="relative w-full aspect-[4/3] max-w-md overflow-hidden rounded-lg shadow-lg mt-auto"
                     >
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             src={imgSmall}
                             alt="Melo Coffee Shop Detail"
-                            fill
-                            className="object-cover hover:scale-105 transition-transform duration-700"
+                            className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                         />
                     </motion.div>
                 </div>

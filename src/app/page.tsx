@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import ImageShowcase from "@/components/ImageShowcase";
+import ScrollRevealStory from "@/components/ScrollRevealStory";
 import Favorites from "@/components/Favorites";
 import NitroBrew from "@/components/NitroBrew";
 import PressMarquee from "@/components/PressMarquee";
@@ -28,8 +29,9 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col">
       <Hero settings={settings} />
-      <ImageShowcase />
+      <ImageShowcase settings={settings} />
       <Favorites settings={settings} />
+      <ScrollRevealStory settings={settings} />
       <NitroBrew settings={settings} />
       <PressMarquee settings={settings} />
       <ParallaxStory settings={settings} />

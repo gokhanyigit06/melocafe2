@@ -1,7 +1,7 @@
 "use client";
 
 import { Globe, Coffee, Store } from "lucide-react";
-import Image from "next/image";
+
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Features({ settings }: { settings?: any }) {
@@ -34,11 +34,11 @@ export default function Features({ settings }: { settings?: any }) {
                         <div className="flex-shrink-0 w-14 h-14 flex items-center justify-center">
                             {feature.icon ? (
                                 <div className="relative w-full h-full">
-                                    <Image
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
                                         src={feature.icon}
                                         alt={feature.title}
-                                        fill
-                                        className="object-contain"
+                                        className="w-full h-full object-contain"
                                     />
                                 </div>
                             ) : (

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -64,7 +64,7 @@ export default function LocationsSection({ locations }: { locations: any[] }) {
     return (
         <section className="bg-[#F5F2EA] text-black pl-6 md:pl-12 py-24 overflow-hidden">
             <div className="container mx-auto pr-6 md:pr-12 mb-12 flex flex-col md:flex-row justify-between items-end gap-8">
-                <h2 className="font-helvetica text-6xl font-bold tracking-tight">Şubeler.</h2>
+                <h2 className="font-helvetica text-6xl font-bold tracking-tight">Şubeleri Gör</h2>
 
                 {/* Desktop Navigation Arrows */}
                 <div className="hidden md:flex gap-4">
@@ -101,22 +101,16 @@ export default function LocationsSection({ locations }: { locations: any[] }) {
                     >
                         <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl mb-6">
                             {loc.image_url ? (
-                                <Image
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
                                     src={loc.image_url}
                                     alt={loc.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
                             ) : (
                                 <div className="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">Görsel Yok</div>
                             )}
-                            <div className="absolute top-4 left-4 flex gap-2">
-                                {loc.tag && (
-                                    <span className="bg-[#F5F2EA] text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                                        {loc.tag}
-                                    </span>
-                                )}
-                            </div>
+
                         </div>
                         <div className="space-y-2 border-t border-black/10 pt-4">
                             <h3 className="font-helvetica text-2xl font-bold">{loc.title}</h3>

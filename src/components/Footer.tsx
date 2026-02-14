@@ -12,8 +12,8 @@ export default function Footer({ settings }: { settings?: any }) {
     const [isLangOpen, setIsLangOpen] = useState(false);
 
     const bigText = settings?.footer_big_text || "Londra'nın ünlü Bermondsey Caddesi'ndeki eski bir 19. yüzyıl saat evinden gururla doğdu.";
-    const newsletterTitle = settings?.footer_newsletter_title || "Bültenimize Abone Olun.";
-    const newsletterDesc = settings?.footer_newsletter_description || "Abone olun ve ilk siparişinizde %10 indirim kazanın, ayrıca en havalı kahve çekirdeklerine hala soğumadan erişim sağlayın.";
+    const newsletterTitle = settings?.footer_newsletter_title || "Bizimle iletişime geçin";
+    const newsletterDesc = settings?.footer_newsletter_description || "Melo'ya iletişim bilgilerini bırak";
 
     const socialLinks = {
         instagram: settings?.social_instagram || "#"

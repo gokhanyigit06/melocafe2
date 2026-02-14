@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -50,11 +50,11 @@ export default function NitroBrew({ settings }: { settings: any }) {
                         transition={{ duration: 0.8, delay: 0.3 }}
                         className="relative w-full aspect-[4/5] md:aspect-square overflow-hidden rounded-sm"
                     >
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             src={img1}
                             alt="Melo Nitro Cold Brew Can"
-                            fill
-                            className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                            className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out"
                         />
                     </motion.div>
                     <motion.div
@@ -64,11 +64,11 @@ export default function NitroBrew({ settings }: { settings: any }) {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="relative w-full aspect-[4/5] md:aspect-square overflow-hidden rounded-sm md:mt-12"
                     >
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             src={img2}
                             alt="Melo Nitro Cold Brew Pack"
-                            fill
-                            className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                            className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out"
                         />
                     </motion.div>
                 </div>

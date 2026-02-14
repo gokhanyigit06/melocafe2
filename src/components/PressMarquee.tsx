@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function PressMarquee({ settings }: { settings?: any }) {
@@ -45,8 +44,9 @@ export default function PressMarquee({ settings }: { settings?: any }) {
                     <div key={index} className="flex items-center gap-10 mx-16 opacity-80 hover:opacity-100 transition-opacity">
                         <div className="flex-shrink-0">
                             {item.logo ? (
-                                <div className="relative h-12 w-32">
-                                    <Image src={item.logo} alt={item.source} fill className="object-contain grayscale" />
+                                <div className="relative h-12 w-32 flex items-center">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={item.logo} alt={item.source} className="h-full w-full object-contain grayscale" />
                                 </div>
                             ) : (
                                 <span className="font-serif text-4xl font-bold tracking-tight text-black">

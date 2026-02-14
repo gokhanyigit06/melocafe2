@@ -60,7 +60,7 @@ export default function NewLocationPage() {
                         </Link>
                         <div>
                             <h1 className="text-2xl font-black text-slate-900 uppercase">Yeni Şube Ekle</h1>
-                            <p className="text-slate-500 text-sm">Şube detaylarını ve görsellerini girin.</p>
+                            <p className="text-slate-700 text-sm">Şube detaylarını ve görsellerini girin.</p>
                         </div>
                     </div>
                     <button
@@ -78,40 +78,40 @@ export default function NewLocationPage() {
                         {/* Main Info */}
                         <section className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
                             <div className="space-y-2">
-                                <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest">
+                                <label className="flex items-center gap-2 text-xs font-black text-slate-600 uppercase tracking-widest font-bold">
                                     <MapPin className="w-3 h-3" /> Şube Adı
                                 </label>
                                 <input
                                     required
                                     value={formData.title}
                                     onChange={(e) => handleChange("title", e.target.value)}
-                                    className="w-full px-5 py-4 rounded-2xl border border-slate-200 focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 outline-none transition-all font-bold text-lg"
+                                    className="w-full px-5 py-4 rounded-2xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10 transition-all outline-none font-bold text-lg"
                                     placeholder="Örn: Bermondsey"
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest">
+                                <label className="flex items-center gap-2 text-xs font-black text-slate-600 uppercase tracking-widest font-bold">
                                     <AlignLeft className="w-3 h-3" /> Adres
                                 </label>
                                 <textarea
                                     value={formData.address}
                                     onChange={(e) => handleChange("address", e.target.value)}
                                     rows={3}
-                                    className="w-full px-5 py-4 rounded-2xl border border-slate-200 focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 outline-none transition-all"
+                                    className="w-full px-5 py-4 rounded-2xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10 transition-all outline-none"
                                     placeholder="Şubenin açık adresi..."
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest">
+                                <label className="flex items-center gap-2 text-xs font-black text-slate-600 uppercase tracking-widest font-bold">
                                     Açıklama / Kısa Not
                                 </label>
                                 <textarea
                                     value={formData.description}
                                     onChange={(e) => handleChange("description", e.target.value)}
                                     rows={2}
-                                    className="w-full px-5 py-4 rounded-2xl border border-slate-200 focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 outline-none transition-all text-sm"
+                                    className="w-full px-5 py-4 rounded-2xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10 transition-all outline-none text-sm"
                                     placeholder="Kısa bir açıklama..."
                                 />
                             </div>
@@ -121,7 +121,7 @@ export default function NewLocationPage() {
                         <section className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest">
+                                    <label className="flex items-center gap-2 text-xs font-black text-slate-600 uppercase tracking-widest font-bold">
                                         <LinkIcon className="w-3 h-3" /> Yol Tarifi Linki (Google Maps)
                                     </label>
                                     <input
@@ -132,7 +132,7 @@ export default function NewLocationPage() {
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-widest">
+                                    <label className="flex items-center gap-2 text-xs font-black text-slate-600 uppercase tracking-widest font-bold">
                                         <Tag className="w-3 h-3" /> Etiket (Tag)
                                     </label>
                                     <input
@@ -177,7 +177,7 @@ export default function NewLocationPage() {
 
                         {/* Preview Card */}
                         <div className="bg-slate-900 rounded-3xl p-6 text-white space-y-4">
-                            <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Önizleme</h4>
+                            <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-700">Önizleme</h4>
                             <div className="aspect-square rounded-2xl bg-slate-800 overflow-hidden relative">
                                 {formData.image_url ? (
                                     <Image src={formData.image_url} className="object-cover" alt="" fill />
@@ -189,7 +189,7 @@ export default function NewLocationPage() {
                             </div>
                             <div>
                                 <h5 className="font-black uppercase tracking-widest text-sm">{formData.title || "Şube Adı"}</h5>
-                                <p className="text-[10px] text-slate-400 uppercase tracking-widest mt-1 line-clamp-1">{formData.address || "Adres..."}</p>
+                                <p className="text-[10px] text-slate-600 uppercase tracking-widest font-bold mt-1 line-clamp-1">{formData.address || "Adres..."}</p>
                             </div>
                         </div>
                     </div>

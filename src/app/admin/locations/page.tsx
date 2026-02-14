@@ -38,7 +38,7 @@ export default async function LocationsPage() {
             <div className="flex items-center justify-between border-b border-slate-200 pb-8">
                 <div>
                     <h1 className="text-3xl font-black text-slate-900 uppercase tracking-tighter">Şubeler Yönetimi</h1>
-                    <p className="text-slate-500 mt-1 font-medium">Şubelerinizi ve Şubeler sayfasının genel içeriğini buradan yönetin.</p>
+                    <p className="text-slate-700 font-bold">Şubelerinizi ve Şubeler sayfasının genel içeriğini buradan yönetin.</p>
                 </div>
                 <Link
                     href="/admin/locations/new"

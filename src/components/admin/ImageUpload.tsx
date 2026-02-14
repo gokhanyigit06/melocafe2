@@ -1,20 +1,22 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Upload, X, Loader2 } from "lucide-react";
-import Image from "next/image";
+import { Upload, X, Loader2, Play } from "lucide-react";
 
 interface ImageUploadProps {
     value?: string;
     onChange: (url: string) => void;
     label?: string;
     className?: string;
+    accept?: string; // e.g. "image/*" or "video/*"
 }
 
-export default function ImageUpload({ value, onChange, label, className = "" }: ImageUploadProps) {
+export default function ImageUpload({ value, onChange, label, className = "", accept = "image/*" }: ImageUploadProps) {
     const [isUploading, setIsUploading] = useState(false);
     const [preview, setPreview] = useState<string | null>(value || null);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const isVideo = preview?.endsWith(".mp4") || preview?.endsWith(".mov") || preview?.endsWith(".webm");
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -45,7 +47,7 @@ export default function ImageUpload({ value, onChange, label, className = "" }: 
             setPreview(data.url); // Use the server URL after upload
         } catch (error) {
             console.error("Upload error:", error);
-            alert("Görsel yüklenirken bir hata oluştu.");
+            alert("Dosya yüklenirken bir hata oluştu.");
             setPreview(value || null); // Revert to old value on error
         } finally {
             setIsUploading(false);
@@ -62,7 +64,7 @@ export default function ImageUpload({ value, onChange, label, className = "" }: 
     return (
         <div className={`space-y-2 ${className}`}>
             {label && (
-                <label className="text-xs font-black text-slate-400 uppercase tracking-widest block mb-2">
+                <label className="text-xs font-black text-slate-600 uppercase tracking-widest block mb-2 font-bold">
                     {label}
                 </label>
             )}
@@ -74,7 +76,7 @@ export default function ImageUpload({ value, onChange, label, className = "" }: 
                     border-2 border-dashed rounded-xl 
                     transition-all duration-200 ease-in-out
                     overflow-hidden
-                    ${preview ? 'border-blue-500/50 bg-blue-50/10' : 'border-slate-200 hover:border-blue-400 hover:bg-blue-50/30'}
+                    ${preview ? 'border-blue-500/50 bg-blue-50/10' : 'border-slate-300 hover:border-blue-500 hover:bg-blue-50/30'}
                     ${isUploading ? 'opacity-70 pointer-events-none' : ''}
                 `}
             >
@@ -82,18 +84,24 @@ export default function ImageUpload({ value, onChange, label, className = "" }: 
                     type="file"
                     ref={fileInputRef}
                     onChange={handleFileChange}
-                    accept="image/*"
+                    accept={accept}
                     className="hidden"
                 />
 
                 {preview ? (
                     <div className="relative aspect-video w-full h-40 bg-slate-100 flex items-center justify-center">
-                        <Image
-                            src={preview}
-                            alt="Preview"
-                            fill
-                            className="object-cover"
-                        />
+                        {isVideo ? (
+                            <div className="relative w-full h-full flex items-center justify-center bg-slate-900">
+                                <video src={preview} className="w-full h-full object-cover opacity-50" muted />
+                                <Play className="absolute w-12 h-12 text-white opacity-80" />
+                            </div>
+                        ) : (
+                            <img
+                                src={preview}
+                                alt="Preview"
+                                className="w-full h-full object-cover"
+                            />
+                        )}
 
                         {/* Overlay Actions */}
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
@@ -115,7 +123,7 @@ export default function ImageUpload({ value, onChange, label, className = "" }: 
                         )}
                     </div>
                 ) : (
-                    <div className="flex flex-col items-center justify-center py-8 gap-3 text-slate-400 hover:text-blue-500 transition-colors">
+                    <div className="flex flex-col items-center justify-center py-8 gap-3 text-slate-600 hover:text-blue-600 transition-colors">
                         <div className="p-3 bg-slate-50 rounded-full group-hover:bg-blue-50 transition-colors">
                             {isUploading ? (
                                 <Loader2 className="w-6 h-6 animate-spin" />
@@ -124,7 +132,7 @@ export default function ImageUpload({ value, onChange, label, className = "" }: 
                             )}
                         </div>
                         <span className="text-xs font-bold uppercase tracking-wide">
-                            {isUploading ? "Yükleniyor..." : "Görsel Yükle"}
+                            {isUploading ? "Yükleniyor..." : "Dosya Yükle"}
                         </span>
                     </div>
                 )}

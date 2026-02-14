@@ -30,10 +30,10 @@ export default async function PostsPage() {
                 <table className="w-full text-left text-sm">
                     <thead className="bg-slate-50 border-b border-slate-200">
                         <tr>
-                            <th className="px-6 py-4 font-medium text-slate-500">Title</th>
-                            <th className="px-6 py-4 font-medium text-slate-500">Status</th>
-                            <th className="px-6 py-4 font-medium text-slate-500">Date</th>
-                            <th className="px-6 py-4 font-medium text-slate-500 text-right">Actions</th>
+                            <th className="px-6 py-4 font-bold text-slate-800">Title</th>
+                            <th className="px-6 py-4 font-bold text-slate-800">Status</th>
+                            <th className="px-6 py-4 font-bold text-slate-800">Date</th>
+                            <th className="px-6 py-4 font-bold text-slate-800 text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-200">

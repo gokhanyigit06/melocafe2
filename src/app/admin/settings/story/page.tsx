@@ -50,7 +50,7 @@ export default function StorySettings() {
             <div className="flex items-center justify-between border-b border-slate-200 pb-6">
                 <div>
                     <h1 className="text-3xl font-bold text-slate-900 uppercase">Hikayemiz (Story) Ayarları</h1>
-                    <p className="text-slate-500 mt-1">Hakkımızda sayfası ve ana sayfadaki hikaye bölümlerini buradan yönetin.</p>
+                    <p className="text-slate-700 mt-1">Hakkımızda sayfası ve ana sayfadaki hikaye bölümlerini buradan yönetin.</p>
                 </div>
                 <button
                     onClick={handleSave}
@@ -72,29 +72,29 @@ export default function StorySettings() {
 
                     <div className="space-y-4">
                         <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Hikaye Başlığı</label>
+                            <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">Hikaye Başlığı</label>
                             <input
                                 value={settings.story_title || ""}
                                 onChange={(e) => handleChange("story_title", e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-4 font-bold text-xl uppercase"
+                                className="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10 font-bold text-xl uppercase"
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Hikaye Metni (Paragraf 1)</label>
+                            <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">Hikaye Metni (Paragraf 1)</label>
                             <textarea
                                 value={settings.story_text1 || ""}
                                 onChange={(e) => handleChange("story_text1", e.target.value)}
                                 rows={5}
-                                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-4"
+                                className="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10"
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Hikaye Metni (Paragraf 2)</label>
+                            <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">Hikaye Metni (Paragraf 2)</label>
                             <textarea
                                 value={settings.story_text2 || ""}
                                 onChange={(e) => handleChange("story_text2", e.target.value)}
                                 rows={5}
-                                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-4"
+                                className="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10"
                             />
                         </div>
                     </div>

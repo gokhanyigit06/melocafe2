@@ -53,8 +53,8 @@ export default function UploadableImageField({
     return (
         <div className="space-y-2">
             <div className="flex items-center justify-between">
-                <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">{label}</label>
-                {description && <span className="text-[10px] text-slate-400 font-medium">{description}</span>}
+                <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">{label}</label>
+                {description && <span className="text-[10px] text-slate-600 font-bold">{description}</span>}
             </div>
             <div className="flex gap-2">
                 <div className="relative flex-1">
@@ -64,7 +64,7 @@ export default function UploadableImageField({
                     <input
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all font-mono text-xs"
+                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10 transition-all outline-none font-mono text-xs"
                         placeholder={placeholder}
                     />
                 </div>

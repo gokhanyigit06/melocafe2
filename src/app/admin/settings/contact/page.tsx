@@ -47,10 +47,10 @@ export default function ContactSettings() {
 
     return (
         <div className="max-w-5xl mx-auto space-y-12 pb-20">
-            <div className="flex items-center justify-between border-b border-slate-200 pb-8">
+            <div className="flex items-center justify-between border-b border-slate-300 text-slate-950 pb-8">
                 <div>
                     <h1 className="text-3xl font-black text-slate-900 uppercase tracking-tighter">İletişim Sayfası Yönetimi</h1>
-                    <p className="text-slate-500 mt-1 font-medium">İletişim sayfasındaki metinleri, görselleri ve bilgileri güncelleyin.</p>
+                    <p className="text-slate-700 mt-1 font-medium">İletişim sayfasındaki metinleri, görselleri ve bilgileri güncelleyin.</p>
                 </div>
                 <button
                     onClick={handleSave}
@@ -64,7 +64,7 @@ export default function ContactSettings() {
 
             <div className="grid grid-cols-1 gap-12">
                 {/* 1. HERO SECTION (TALK TO US) */}
-                <section className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm space-y-8">
+                <section className="bg-white p-8 rounded-[2.5rem] border border-slate-300 text-slate-950 shadow-sm space-y-8">
                     <div className="flex items-center gap-4 border-b border-slate-50 pb-6">
                         <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600">
                             <ImageIcon className="w-6 h-6" />
@@ -75,21 +75,21 @@ export default function ContactSettings() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="space-y-6">
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Büyük Başlık (Görsel Üstü)</label>
+                                <label className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] font-bold">Büyük Başlık (Görsel Üstü)</label>
                                 <input
                                     value={settings.contact_hero_title || ""}
                                     onChange={(e) => handleChange("contact_hero_title", e.target.value)}
-                                    className="w-full px-6 py-4 rounded-2xl border border-slate-200 font-black text-3xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all"
+                                    className="w-full px-6 py-4 rounded-2xl border border-slate-300 text-slate-950 font-black text-3xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all"
                                     placeholder="Talk to us."
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Açıklama Metni</label>
+                                <label className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] font-bold">Açıklama Metni</label>
                                 <textarea
                                     value={settings.contact_hero_desc || ""}
                                     onChange={(e) => handleChange("contact_hero_desc", e.target.value)}
                                     rows={3}
-                                    className="w-full px-6 py-4 rounded-2xl border border-slate-200 font-bold text-slate-600 focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all"
+                                    className="w-full px-6 py-4 rounded-2xl border border-slate-300 text-slate-950 font-border-slate-300 text-slate-950 focus:border-indigo-600 focus:ring-indigo-600/10 transition-all outline-none"
                                     placeholder="Uzmanlarımız Modern Kahve sorularınız için burada..."
                                 />
                             </div>
@@ -103,20 +103,20 @@ export default function ContactSettings() {
                             />
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Buton 1 Yazısı</label>
+                                    <label className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] font-bold">Buton 1 Yazısı</label>
                                     <input
                                         value={settings.contact_hero_btn1_text || ""}
                                         onChange={(e) => handleChange("contact_hero_btn1_text", e.target.value)}
-                                        className="w-full px-4 py-3 rounded-xl border border-slate-200 font-bold"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-950 font-bold"
                                         placeholder="FAQS"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Buton 2 Yazısı</label>
+                                    <label className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] font-bold">Buton 2 Yazısı</label>
                                     <input
                                         value={settings.contact_hero_btn2_text || ""}
                                         onChange={(e) => handleChange("contact_hero_btn2_text", e.target.value)}
-                                        className="w-full px-4 py-3 rounded-xl border border-slate-200 font-bold"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-950 font-bold"
                                         placeholder="FEEDBACK"
                                     />
                                 </div>
@@ -126,7 +126,7 @@ export default function ContactSettings() {
                 </section>
 
                 {/* 2. CONTACT DETAILS (OFFICES, ONLINE ORDERS ETC) */}
-                <section className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm space-y-8">
+                <section className="bg-white p-8 rounded-[2.5rem] border border-slate-300 text-slate-950 shadow-sm space-y-8">
                     <div className="flex items-center gap-4 border-b border-slate-50 pb-6">
                         <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600">
                             <Phone className="w-6 h-6" />
@@ -221,7 +221,7 @@ export default function ContactSettings() {
                 </section>
 
                 {/* 3. MESSAGE FORM SECTION */}
-                <section className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm space-y-8">
+                <section className="bg-white p-8 rounded-[2.5rem] border border-slate-300 text-slate-950 shadow-sm space-y-8">
                     <div className="flex items-center gap-4 border-b border-slate-50 pb-6">
                         <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600">
                             <Type className="w-6 h-6" />
@@ -229,11 +229,11 @@ export default function ContactSettings() {
                         <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">3. Mesaj Formu Başlığı</h2>
                     </div>
                     <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Form Başlığı</label>
+                        <label className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] font-bold">Form Başlığı</label>
                         <input
                             value={settings.contact_form_title || ""}
                             onChange={(e) => handleChange("contact_form_title", e.target.value)}
-                            className="w-full px-6 py-4 rounded-2xl border border-slate-200 font-black text-2xl focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 outline-none transition-all"
+                            className="w-full px-6 py-4 rounded-2xl border border-slate-300 text-slate-950 font-black tborder-slate-300 text-slate-950 focus:border-orange-600 focus:ring-orange-600/10 transition-all outline-none"
                             placeholder="Send us a message."
                         />
                     </div>

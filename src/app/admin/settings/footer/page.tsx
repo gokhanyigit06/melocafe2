@@ -49,7 +49,7 @@ export default function FooterSettings() {
             <div className="flex items-center justify-between border-b border-slate-200 pb-6">
                 <div>
                     <h1 className="text-3xl font-bold text-slate-900 uppercase">Footer (Alt Bar) Ayarları</h1>
-                    <p className="text-slate-500 mt-1">İletişim bilgileri, sosyal medya ve alt metinleri buradan yönetin.</p>
+                    <p className="text-slate-700 font-bold">İletişim bilgileri, sosyal medya ve alt metinleri buradan yönetin.</p>
                 </div>
                 <button
                     onClick={handleSave}
@@ -71,28 +71,28 @@ export default function FooterSettings() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">E-Posta</label>
+                            <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">E-Posta</label>
                             <input
                                 value={settings.footer_email || ""}
                                 onChange={(e) => handleChange("footer_email", e.target.value)}
-                                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-4"
+                                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10 transition-all outline-none"
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Telefon</label>
+                            <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">Telefon</label>
                             <input
                                 value={settings.footer_phone || ""}
                                 onChange={(e) => handleChange("footer_phone", e.target.value)}
-                                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-4"
+                                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10 transition-all outline-none"
                             />
                         </div>
                         <div className="md:col-span-2 space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Adres</label>
+                            <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">Adres</label>
                             <textarea
                                 value={settings.footer_address || ""}
                                 onChange={(e) => handleChange("footer_address", e.target.value)}
                                 rows={2}
-                                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-4"
+                                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10 transition-all outline-none"
                             />
                         </div>
                     </div>
@@ -107,12 +107,12 @@ export default function FooterSettings() {
 
                     <div className="space-y-4">
                         <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Footer Büyük Slogan ( STATEMENT )</label>
+                            <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">Footer Büyük Slogan ( STATEMENT )</label>
                             <textarea
                                 value={settings.footer_big_text || ""}
                                 onChange={(e) => handleChange("footer_big_text", e.target.value)}
                                 rows={3}
-                                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-4 font-medium text-lg"
+                                className="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10 transition-all outline-none font-medium text-lg"
                             />
                         </div>
                     </div>
@@ -127,7 +127,7 @@ export default function FooterSettings() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Instagram</label>
+                            <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">Instagram</label>
                             <input
                                 value={settings.social_instagram || ""}
                                 onChange={(e) => handleChange("social_instagram", e.target.value)}
@@ -136,7 +136,7 @@ export default function FooterSettings() {
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Facebook</label>
+                            <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">Facebook</label>
                             <input
                                 value={settings.social_facebook || ""}
                                 onChange={(e) => handleChange("social_facebook", e.target.value)}

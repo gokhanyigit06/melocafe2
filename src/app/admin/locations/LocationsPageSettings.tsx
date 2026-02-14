@@ -55,16 +55,16 @@ export default function LocationsPageSettings({ initialSettings }: { initialSett
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Ana Başlık (HERO)</label>
+                    <label className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] font-bold">Ana Başlık (HERO)</label>
                     <input
                         value={settings.locations_page_title || ""}
                         onChange={(e) => handleChange("locations_page_title", e.target.value)}
-                        className="w-full px-5 py-4 rounded-2xl border border-slate-200 font-bold focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all"
+                        className="w-full px-5 py-4 rounded-2xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10 transition-all outline-none"
                         placeholder="Visit Us."
                     />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Açıklama Metni</label>
+                    <label className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] font-bold">Açıklama Metni</label>
                     <textarea
                         value={settings.locations_page_desc || ""}
                         onChange={(e) => handleChange("locations_page_desc", e.target.value)}

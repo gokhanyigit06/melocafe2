@@ -50,7 +50,7 @@ export default function HeaderSettings() {
             <div className="flex items-center justify-between border-b border-slate-200 pb-6">
                 <div>
                     <h1 className="text-3xl font-bold text-slate-900 uppercase">Header (Üst Bar) Ayarları</h1>
-                    <p className="text-slate-500 mt-1">Logo, duyuru çubuğu ve menü navigasyonunu buradan yönetin.</p>
+                    <p className="text-slate-700 font-bold">Logo, duyuru çubuğu ve menü navigasyonunu buradan yönetin.</p>
                 </div>
                 <button
                     onClick={handleSave}
@@ -72,11 +72,11 @@ export default function HeaderSettings() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
                         <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Site Başlığı (Logo Yerine)</label>
+                            <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">Site Başlığı (Logo Yerine)</label>
                             <input
                                 value={settings.site_name || ""}
                                 onChange={(e) => handleChange("site_name", e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all font-bold"
+                                className="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-950 focus:border-blue-600 focus:ring-blue-600/10 transition-all outline-none"
                             />
                         </div>
 
@@ -100,17 +100,17 @@ export default function HeaderSettings() {
 
                     <div className="space-y-6">
                         <div className="space-y-2">
-                            <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Duyuru Metni (Subscribe & save...)</label>
+                            <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">Duyuru Metni (Subscribe & save...)</label>
                             <input
                                 value={settings.announcement_text || ""}
                                 onChange={(e) => handleChange("announcement_text", e.target.value)}
-                                className="w-full px-5 py-4 rounded-2xl border border-slate-200 focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 outline-none transition-all font-medium"
+                                className="w-full px-5 py-4 rounded-2xl border border-slate-300 text-slate-950 focus:border-orange-600 focus:ring-orange-600/10 transition-all outline-none"
                                 placeholder="Ücretsiz kargo fırsatını kaçırmayın!"
                             />
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-2">
-                                <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Buton Metni (Opsiyonel)</label>
+                                <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">Buton Metni (Opsiyonel)</label>
                                 <input
                                     value={settings.announcement_btn_text || ""}
                                     onChange={(e) => handleChange("announcement_btn_text", e.target.value)}
@@ -118,7 +118,7 @@ export default function HeaderSettings() {
                                 />
                             </div>
                             <div className="flex-1 space-y-2">
-                                <label className="block text-sm font-semibold text-slate-700 uppercase tracking-wider">Buton Linki</label>
+                                <label className="block text-sm font-semibold text-slate-900 uppercase tracking-wider">Buton Linki</label>
                                 <input
                                     value={settings.announcement_btn_link || ""}
                                     onChange={(e) => handleChange("announcement_btn_link", e.target.value)}

@@ -16,10 +16,12 @@ export default function ParallaxStory({ settings }: { settings?: any }) {
     const textY = useTransform(scrollYProgress, [0.15, 0.35, 0.65, 0.85], [60, 0, 0, -60]);
 
     const paragraphs = [
-        "Melo Coffee, kahve kültürünü klasik kalıpların dışına taşıyan, içecek ve yemeği bir deneyim olarak ele alan modern bir şehir markasıdır.",
-        "Özenle seçilmiş çekirdeklerle hazırlanan kahveleri; bar teknikleriyle geliştirilen yenilikçi reçeteler ve sağlıklı, dengeli yiyeceklerle bir araya getirir.",
-        "Melo, her şubesinde aynı kalite anlayışını korurken, bulunduğu lokasyona göre şekillenen esnek bir hizmet modeliyle sektöre yeni bir soluk getirmeyi hedefler.",
-    ];
+        settings?.parallax_p1 || "Melo Coffee, kahve kültürünü klasik kalıpların dışına taşıyan, içecek ve yemeği bir deneyim olarak ele alan modern bir şehir markasıdır.",
+        settings?.parallax_p2 || "Özenle seçilmiş çekirdeklerle hazırlanan kahveleri; bar teknikleriyle geliştirilen yenilikçi reçeteler ve sağlıklı, dengeli yiyeceklerle bir araya getirir.",
+        settings?.parallax_p3 || "Melo, her şubesinde aynı kalite anlayışını korurken, bulunduğu lokasyona göre şekillenen esnek bir hizmet modeliyle sektöre yeni bir soluk getirmeyi hedefler.",
+    ].filter(p => p.trim() !== "");
+
+    const bgImage = settings?.parallax_image || "";
 
     return (
         <section
@@ -27,18 +29,40 @@ export default function ParallaxStory({ settings }: { settings?: any }) {
             className="relative w-full overflow-hidden"
             style={{ minHeight: "55vh" }}
         >
-            {/* Gradient Background - dark blue fabric-like feel */}
-            <div
-                className="absolute inset-0"
-                style={{
-                    background: `
-                        radial-gradient(ellipse 120% 80% at 20% 20%, rgba(15, 45, 75, 0.9) 0%, transparent 60%),
-                        radial-gradient(ellipse 100% 100% at 80% 80%, rgba(10, 30, 55, 0.95) 0%, transparent 50%),
-                        radial-gradient(ellipse 80% 60% at 60% 30%, rgba(20, 60, 90, 0.4) 0%, transparent 50%),
-                        linear-gradient(160deg, #0a1a2e 0%, #0d2a45 25%, #0f3555 45%, #0b2640 65%, #071a30 100%)
-                    `,
-                }}
-            />
+            {/* Background Image or Video or Gradient */}
+            {bgImage ? (
+                <>
+                    {bgImage.match(/\.(mp4|webm|mov)$/) ? (
+                        <video
+                            src={bgImage}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            className="absolute inset-0 w-full h-full object-cover"
+                        />
+                    ) : (
+                        <img
+                            src={bgImage}
+                            alt=""
+                            className="absolute inset-0 w-full h-full object-cover"
+                        />
+                    )}
+                    <div className="absolute inset-0 bg-black/50" />
+                </>
+            ) : (
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        background: `
+                            radial-gradient(ellipse 120% 80% at 20% 20%, rgba(15, 45, 75, 0.9) 0%, transparent 60%),
+                            radial-gradient(ellipse 100% 100% at 80% 80%, rgba(10, 30, 55, 0.95) 0%, transparent 50%),
+                            radial-gradient(ellipse 80% 60% at 60% 30%, rgba(20, 60, 90, 0.4) 0%, transparent 50%),
+                            linear-gradient(160deg, #0a1a2e 0%, #0d2a45 25%, #0f3555 45%, #0b2640 65%, #071a30 100%)
+                        `,
+                    }}
+                />
+            )}
 
             {/* Subtle light streaks for fabric/curtain effect */}
             <div
@@ -49,14 +73,6 @@ export default function ParallaxStory({ settings }: { settings?: any }) {
                         linear-gradient(95deg, transparent 50%, rgba(100, 160, 200, 0.2) 60%, transparent 70%),
                         linear-gradient(105deg, transparent 65%, rgba(80, 140, 180, 0.15) 75%, transparent 85%)
                     `,
-                }}
-            />
-
-            {/* Subtle noise/texture overlay */}
-            <div
-                className="absolute inset-0 opacity-[0.03]"
-                style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
                 }}
             />
 

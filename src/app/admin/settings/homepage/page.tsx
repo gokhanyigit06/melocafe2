@@ -51,8 +51,8 @@ export default function HomepageSettings() {
                 <button
                     onClick={() => handleChange(settingKey, isVisible ? "false" : "true")}
                     className={`flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all ${isVisible
-                            ? "bg-green-100 text-green-700 border border-green-200"
-                            : "bg-red-100 text-red-700 border border-red-200"
+                        ? "bg-green-100 text-green-700 border border-green-200"
+                        : "bg-red-100 text-red-700 border border-red-200"
                         }`}
                 >
                     {isVisible ? <CheckCircle2 size={18} /> : <XCircle size={18} />}
@@ -451,31 +451,84 @@ export default function HomepageSettings() {
                         <div className="w-12 h-12 bg-violet-50 rounded-2xl flex items-center justify-center text-violet-600">
                             <Sparkles className="w-6 h-6" />
                         </div>
-                        <h2 className="text-2xl font-black text-slate-900 uppercase">9. Parallax Hikaye (Alt Plan)</h2>
+                        <h2 className="text-2xl font-black text-slate-900 uppercase">9. Parallax Hikaye (Kısa Tanıtım)</h2>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div className="space-y-8">
                             <div className="space-y-3">
-                                <label className="text-xs font-black text-slate-600 uppercase">Vurucu Slogan</label>
-                                <textarea value={settings.parallax_title || ""} onChange={(e) => handleChange("parallax_title", e.target.value)} rows={3} className="w-full px-5 py-4 rounded-2xl border border-slate-300 text-slate-950 font-serif text-xl" />
+                                <label className="text-xs font-black text-slate-600 uppercase tracking-widest">Vurucu Slogan (Ana Başlık)</label>
+                                <textarea
+                                    value={settings.parallax_title || ""}
+                                    onChange={(e) => handleChange("parallax_title", e.target.value)}
+                                    rows={2}
+                                    className="w-full px-5 py-4 rounded-2xl border border-slate-300 text-slate-950 font-serif text-xl font-bold focus:ring-4 focus:ring-violet-500/10 focus:border-violet-500"
+                                />
                             </div>
+
+                            <div className="space-y-6 pt-4 border-t border-slate-100">
+                                <h3 className="text-xs font-black text-violet-600 uppercase tracking-tighter italic">Hikaye Metni (Paragraflar)</h3>
+
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black text-slate-500 uppercase">1. Paragraf</label>
+                                    <textarea
+                                        value={settings.parallax_p1 || ""}
+                                        onChange={(e) => handleChange("parallax_p1", e.target.value)}
+                                        rows={3}
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-950 text-sm focus:border-violet-400"
+                                        placeholder="Melo Coffee, kahve kültürünü..."
+                                    />
+                                </div>
+
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black text-slate-500 uppercase">2. Paragraf</label>
+                                    <textarea
+                                        value={settings.parallax_p2 || ""}
+                                        onChange={(e) => handleChange("parallax_p2", e.target.value)}
+                                        rows={3}
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-950 text-sm focus:border-violet-400"
+                                        placeholder="Özenle seçilmiş çekirdeklerle..."
+                                    />
+                                </div>
+
+                                <div className="space-y-3">
+                                    <label className="text-[10px] font-black text-slate-500 uppercase">3. Paragraf</label>
+                                    <textarea
+                                        value={settings.parallax_p3 || ""}
+                                        onChange={(e) => handleChange("parallax_p3", e.target.value)}
+                                        rows={3}
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-950 text-sm focus:border-violet-400"
+                                        placeholder="Melo, her şubesinde aynı..."
+                                    />
+                                </div>
+                            </div>
+
                             <div className="space-y-3">
-                                <label className="text-xs font-black text-slate-600 uppercase">Yazı Boyutu</label>
-                                <select value={settings.parallax_title_size || "large"} onChange={(e) => handleChange("parallax_title_size", e.target.value)} className="w-full px-5 py-4 rounded-2xl border border-slate-300 text-slate-950 font-bold bg-white">
+                                <label className="text-xs font-black text-slate-600 uppercase">Başlık Yazı Boyutu</label>
+                                <select
+                                    value={settings.parallax_title_size || "large"}
+                                    onChange={(e) => handleChange("parallax_title_size", e.target.value)}
+                                    className="w-full px-5 py-4 rounded-2xl border border-slate-300 text-slate-950 font-bold bg-white"
+                                >
                                     <option value="large">Büyük (Standart)</option>
                                     <option value="medium">Orta</option>
                                     <option value="small">Küçük</option>
                                 </select>
                             </div>
                         </div>
+
                         <div className="space-y-6">
                             <ImageUpload
-                                label="Arka Plan Medyası"
+                                label="Arka Plan Medyası (Görsel veya Video)"
                                 value={settings.parallax_image || ""}
                                 onChange={(url) => handleChange("parallax_image", url)}
                                 accept="image/*,video/*"
                             />
+                            <div className="p-4 bg-violet-50 border border-violet-100 rounded-2xl">
+                                <p className="text-xs text-violet-700 font-bold leading-relaxed italic">
+                                    İpucu: Bu bölüm "Parallax" efektine sahiptir. Arka plana eklediğiniz medya, siz sayfayı kaydırdıkça yavaşça hareket eder. Yüksek çözünürlüklü görseller en iyi sonucu verir.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </section>
